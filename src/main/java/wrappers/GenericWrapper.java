@@ -49,28 +49,21 @@ public class GenericWrapper extends Reporter implements Wrappers
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-		
 	}
+
+}
 	
 	public GenericWrapper(RemoteWebDriver driver, ExtentTest test)
 	{
 		this.driver=driver;
 		this.test=test;
 	}
-	
-	//
 
 	//Invoking the browser with the URL
 	public void invokeApp(String browser, String LoginAs)  
 	{
-		
-		
 		try
 		{
-			
 			LoginAs=LoginAs.toLowerCase();
 			
 			if(LoginAs.equals("admin"))
@@ -79,10 +72,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 				URL=prop.getProperty("UserURL");
 			else
 				URL=prop.getProperty("paytmURL");
-			
-			
-			
-			//Browser Launch
+				//Browser Launch
 			
 			browser=browser.toLowerCase();
 			
@@ -118,7 +108,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 		{
 			reportStep("The browser:" + browser + " could not be launched successfully", "FAIL");
 
-			System.out.println("Browser launch failed -->"+e.getMessage());
+			reportStep("Browser launch failed -->"+e.getMessage(),"FAIL");
 		}
 		
 		
@@ -129,15 +119,16 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try
 		{
 			driver.findElement(By.id(ID)).sendKeys(data);
+			reportStep("The data: "+data+" entered successfully in field :"+ID, "PASS");
 			
 		}
 		catch(ElementNotFoundException e)
 		{
-			System.out.println("The element "+ ID +" not Found");
+			reportStep("The element "+ ID +" not Found","FAIL");
 		}
 		catch(ElementNotVisibleException e)
 		{
-			System.out.println("The element "+ ID +" not Visible");
+			reportStep("The element "+ ID +" not Visible","FAIL");
 		}
 	}
 
@@ -145,14 +136,15 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try
 		{
 			driver.findElement(By.name(Name)).sendKeys(data);
+			reportStep("The data: "+data+" entered successfully in field :"+Name, "PASS");
 		}
 		catch(ElementNotFoundException e)
 		{
-			System.out.println("The element "+ Name +" not Found");
+			reportStep("The element "+ Name +" not Found","FAIL");
 		}
 		catch(ElementNotVisibleException e)
 		{
-			System.out.println("The element "+ Name +" not Visible");
+			reportStep("The element "+ Name +" not Visible","FAIL");
 		}
 		
 	}
@@ -161,14 +153,15 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try
 		{
 			driver.findElement(By.className(ClassName)).sendKeys(data);
+			reportStep("The data: "+data+" entered successfully in field :"+ClassName, "PASS");
 		}
 		catch(ElementNotFoundException e)
 		{
-			System.out.println("The element "+ ClassName +" not Found");
+			reportStep("The element "+ ClassName +" not Found","FAIL");
 		}
 		catch(ElementNotVisibleException e)
 		{
-			System.out.println("The element "+ ClassName +" not Visible");
+			reportStep("The element "+ ClassName +" not Visible","FAIL");
 		}
 		
 	}
@@ -177,14 +170,15 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try
 		{
 			driver.findElement(By.xpath(XpathVal)).sendKeys(data);
+			reportStep("The data: "+data+" entered successfully in field :"+XpathVal, "PASS");
 		}
 		catch(ElementNotFoundException e)
 		{
-			System.out.println("The element "+ XpathVal +" not Found");
+			reportStep("The element "+ XpathVal +" not Found","FAIL");
 		}
 		catch(ElementNotVisibleException e)
 		{
-			System.out.println("The element "+ XpathVal +" not Visible");
+			reportStep("The element "+ XpathVal +" not Visible","FAIL");
 		}
 	}
 
@@ -192,14 +186,15 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try
 		{
 			driver.findElement(By.id(id)).click();
+			reportStep("The element: "+id+" was clicked successfully", "PASS");
 		}
 		catch(ElementNotFoundException e)
 		{
-			System.out.println("The element "+ id +" not Found");
+			reportStep("The element "+ id +" not Found","FAIL");
 		}
 		catch(ElementNotVisibleException e)
 		{
-			System.out.println("The element "+ id +" not Visible");
+			reportStep("The element "+ id +" not Visible","FAIL");
 		}
 		
 	}
@@ -208,14 +203,15 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try
 		{
 			driver.findElement(By.className(classVal)).click();
+			reportStep("The element: "+classVal+" was clicked successfully", "PASS");
 		}
 		catch(ElementNotFoundException e)
 		{
-			System.out.println("The element "+ classVal +" not Found");
+			reportStep("The element "+ classVal +" not Found","FAIL");
 		}
 		catch(ElementNotVisibleException e)
 		{
-			System.out.println("The element "+ classVal +" not Visible");
+			reportStep("The element "+ classVal +" not Visible","FAIL");
 		}
 		
 	}
@@ -224,14 +220,15 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try
 		{
 			driver.findElement(By.name(name)).click();
+			reportStep("The element: "+name+" was clicked successfully", "PASS");
 		}
 		catch(ElementNotFoundException e)
 		{
-			System.out.println("The element "+ name +" not Found");
+			reportStep("The element "+ name +" not Found","FAIL");
 		}
 		catch(ElementNotVisibleException e)
 		{
-			System.out.println("The element "+ name +" not Visible");
+			reportStep("The element "+ name +" not Visible","FAIL");
 		}
 		
 	}
@@ -240,14 +237,15 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try
 		{
 			driver.findElement(By.linkText(linkName)).click();
+			reportStep("The element: "+linkName+" was clicked successfully", "PASS");
 		}
 		catch(ElementNotFoundException e)
 		{
-			System.out.println("The element "+ linkName +" not Found");
+			reportStep("The element "+ linkName +" not Found","FAIL");
 		}
 		catch(ElementNotVisibleException e)
 		{
-			System.out.println("The element "+ linkName +" not Visible");
+			reportStep("The element "+ linkName +" not Visible","FAIL");
 		}
 		
 		
@@ -257,113 +255,278 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try
 		{
 			driver.findElement(By.xpath(XpathVal)).click();
+			reportStep("The element: "+XpathVal+" was clicked successfully", "PASS");
 		}
 		catch(ElementNotFoundException e)
 		{
-			System.out.println("The element "+ XpathVal +" not Found");
+			reportStep("The element "+ XpathVal +" not Found","FAIL");
 		}
 		catch(ElementNotVisibleException e)
 		{
-			System.out.println("The element "+ XpathVal +" not Visible");
+			reportStep("The element "+ XpathVal +" not Visible","FAIL");
 		}
 		
 	}
-
-	public void selectVisibileTextById(String ID, String Val) {
-		// TODO Auto-generated method stub
+	/*
+	 * This method will select the drop down Visible Text using "ID" as locator.
+	 * @param ID - "id" locator of the drop down. 
+	 * @param Val - Value to be selected from the drop down list(Visible Text).
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public void selectVisibleTextById(String ID, String Val) throws Exception {
 		try {
 			WebElement dropdown = driver.findElement(By.id(ID));
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
-			reportStep("Expected text was successfully Selected" , "PASS");
+			reportStep("Expected text: "+Val+" was selected successfully", "PASS");
 		} catch (ElementNotFoundException e) {
-			reportStep("Expected text was not found on the Web page" , "FAIL");
+			reportStep("Expected text: "+Val+" was not found on the Webpage", "FAIL");
+		}
+		catch (ElementNotVisibleException e) {
+			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
 		}
 	}
 
-	public void selectIndexById(String ID, String Val) {
-		// TODO Auto-generated method stub
+	/*
+	 * This method will select the drop down Visible Text using "Name" as locator. 
+	 * @param Name - "Name" locator of the drop down. 
+	 * @param Val - Value to be selected from the drop down list(Visible Text).
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public void selectVisibleTextByName(String Name, String Val) throws Exception {
+		try {
+			WebElement dropdown = driver.findElement(By.name(Name));
+			Select dd = new Select(dropdown);
+			dd.selectByVisibleText(Val);
+			reportStep("Expected text: "+Val+" was selected successfully", "PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Expected text: "+Val+" was not found on the Webpage", "FAIL");
+		}
+		catch (ElementNotVisibleException e) {
+			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
+		}
+	}
+
+	/*
+	 * This method will select the drop down Visible Text using "Class" as locator. 
+	 * @param Name - "Class" locator of the drop down. 
+	 * @param Val - Value to be selected from the drop down list(Visible Text).
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public void selectVisibleTextByClass(String Class, String Val) throws Exception {
+		try {
+			WebElement dropdown = driver.findElement(By.className(Class));
+			Select dd = new Select(dropdown);
+			dd.selectByVisibleText(Val);
+			reportStep("Expected text: "+Val+" was selected successfully", "PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Expected text: "+Val+" was not found on the Webpage", "FAIL");
+		}
+		catch (ElementNotVisibleException e) {
+			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
+		}	}
+
+	/*
+	 * This method will select the drop down Visible Text using "XpathVal" as locator. 
+	 * @param XpathVal - "XpathVal" locator of the drop down. 
+	 * @param Val - Value to be selected from the drop down list(Visible Text).
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public void selectVisibleByXpath(String XpathVal, String Val) throws Exception {
+		try {
+			WebElement dropdown = driver.findElement(By.className(XpathVal));
+			Select dd = new Select(dropdown);
+			dd.selectByVisibleText(Val);
+			reportStep("Expected text: "+Val+" was selected successfully", "PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Expected text: "+Val+" was not found on the Webpage", "FAIL");
+		}
+		catch (ElementNotVisibleException e) {
+			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
+		}
+	}
+
+	/*
+	 * This method will select the value from the drop down using Index as "ID" locator. 
+	 * @param ID - "ID" locator of the drop down. 
+	 * @param Val - Value to be selected from the drop down.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public void selectIndexById(String ID, String Val) throws Exception {
 		try {
 			WebElement dropdown = driver.findElement(By.className(ID));
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
-			reportStep("Expected value was successfully selected based on the index given" , "PASS");
+			reportStep("Expected text: "+Val+" was selected successfully", "PASS");
 		} catch (ElementNotFoundException e) {
-			reportStep("Expected value was not found on the Webpage for the provided index" , "FAIL");
+			reportStep("Expected text: "+Val+" was not found on the Webpage", "FAIL");
 		}
-		
+		catch (ElementNotVisibleException e) {
+			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
+		}
 	}
 
-	public String getTextById(String idVal) {
-		
-		try{
-			return  driver.findElementById(idVal).getText();
-			
-		} catch (Exception e) {
-			reportStep("The element with id: "+idVal+" could not be found.", "FAIL");
-		}
-			
-		return null;
-	}
-
-
-	public String getTextByName(String Name) {
-		// TODO Auto-generated method stub
-		try{
-		return driver.findElement(By.name(Name)).getText();
-		} catch (Exception e) {
-			reportStep("The element with name: "+Name+" could not be found.", "FAIL");
-		}
-			
-		return null;
-	}
-
-	public String getTextByClass(String Class) {
-		// TODO Auto-generated method stub
-		try{
-		return driver.findElement(By.className(Class)).getText();
-		} catch (Exception e) {
-			reportStep("The element with name: "+Class+" could not be found.", "FAIL");
-		}
-			
-		return null;
-	}
-
-	public String getTextByLinkText(String LinkText) {
-		// TODO Auto-generated method stub
-		try{
-		return driver.findElement(By.linkText(LinkText)).getText();
-		} catch (Exception e) {
-			reportStep("The element with name: "+LinkText+" could not be found.", "FAIL");
-		}
-			
-		return null;
-	}
-	
-	public String getTextByXpath(String XpathVal) {
-		// TODO Auto-generated method stub
-		try{
-		return driver.findElement(By.xpath(XpathVal)).getText();
-		} catch (Exception e) {
-			reportStep("The element with name: "+XpathVal+" could not be found.", "FAIL");
-		}
-			
-		return null;
-	}
-
-	public void verifyTitle(String title) {
-		// TODO Auto-generated method stub
+	/*
+	 * This method will select the drop down using Index as "Name" locator. 
+	 * @param Name - "Name" locator of the drop down. 
+	 * @param Val - Value to be selected from thedrop down.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public void selectIndextByName(String Name, String Val) throws Exception {
 		try {
-			String vTitle = driver.getTitle();
-			vTitle.equals(title);
-			reportStep("Title was same" , "PASS");
+			WebElement dropdown = driver.findElement(By.className(Name));
+			Select dd = new Select(dropdown);
+			dd.selectByVisibleText(Val);
+			reportStep("Expected value: "+Val+" was selected successfully based on the index given", "PASS");
 		} catch (ElementNotFoundException e) {
-			reportStep("Title mismatches" , "FAIL");
+			reportStep("Expected value: "+Val+" was not found on the Webpage for the provided index", "FAIL");
+		}catch (ElementNotVisibleException e) {
+			reportStep("Expected value: "+Val+" is not visible on the Webpage for the provided index", "FAIL");
+			}
 		}
+
+	/*
+	 * This method will select the drop down using Index as "Class" locator.
+	 * @param Class - "Class" locator of the drop down. 
+	 * @param Val - Value to be selected from the drop down.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public void selectIndextByClass(String Class, String Val) {
+		try {
+			WebElement dropdown = driver.findElement(By.className(Class));
+			Select dd = new Select(dropdown);
+			dd.selectByVisibleText(Val);
+			reportStep("Expected value: "+Val+" was selected successfully based on the index given", "PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Expected value: "+Val+" was not found on the Webpage for the provided index", "FAIL");
+		}catch (ElementNotVisibleException e) {
+			reportStep("Expected value: "+Val+" is not visible on the Webpage for the provided index", "FAIL");
+			}
 	}
-		
 
+	/*
+	 * This method will select the drop down using Index as "XpathVal" locator.
+	 * @param XpathVal - "XpathVal" locator of the drop down. 
+	 * @param Val - Value to be selected from the drop down.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public void selectIndexpath(String XpathVal, String Val) throws Exception {
+		try {
+			WebElement dropdown = driver.findElement(By.className(XpathVal));
+			Select dd = new Select(dropdown);
+			dd.selectByVisibleText(Val);
+			reportStep("Expected value: "+Val+" was selected successfully based on the index given", "PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Expected value: "+Val+" was not found on the Webpage for the provided index", "FAIL");
+		}catch (ElementNotVisibleException e) {
+			reportStep("Expected value: "+Val+" is not visible on the Webpage for the provided index", "FAIL");
+			}
+	}
 
+	/*
+	 * This method will get the text of the element using "ID" as locator. 
+	 * @param ID - "ID" locator of the element.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public String getTextById(String IDVal) throws Exception {
+		String gText = driver.findElement(By.id(IDVal)).getText();
+		try {
+			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
+		}catch (ElementNotVisibleException e) {
+			reportStep("Text: "+gText+" you are looking is not visible on the Web page", "FAIL");
+		}
+		return gText;
+	}
+
+	/*
+	 * This method will get the text of the element using "Name" as locator.
+	 * @param Name - "Name" locator of the element.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public String getTextByName(String Name) throws Exception {
+		String gText = driver.findElement(By.name(Name)).getText();
+		try {
+			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
+		}catch (ElementNotVisibleException e) {
+			reportStep("Text: "+gText+" you are looking is not visible on the Web page", "FAIL");
+		}
+		return gText;
+	}
+
+	/*
+	 * This method will get the text of the element using "Class" as locator.
+	 * @param Class - "Class" locator of the element.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public String getTextByClass(String Class) throws Exception {
+		String gText = driver.findElement(By.className(Class)).getText();
+		try {
+			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
+		}catch (ElementNotVisibleException e) {
+			reportStep("Text: "+gText+" you are looking is not visible on the Web page", "FAIL");
+		}
+		return gText;
+	}
+
+	/*
+	 * This method will get the text of the element using "LinkText" as locator.
+	 * @param LinkText - "LinkText" locator of the element.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public String getTextByLinkText(String LinkText) throws Exception {
+		String gText = driver.findElement(By.linkText(LinkText)).getText();
+		try {
+			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
+		}catch (ElementNotVisibleException e) {
+			reportStep("Text: "+gText+" you are looking is not visible on the Web page", "FAIL");
+		}
+		return gText;
+	}
+
+	/*
+	 * This method will get the text of the element using "XpathVal" as locator.
+	 * @param XpathVal - "XpathVal" locator of the element.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public String getTextByXpath(String XpathVal) throws Exception {
+		String gText = driver.findElement(By.xpath(XpathVal)).getText();
+		try {
+			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
+		} catch (ElementNotFoundException e) {
+			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
+		}catch (ElementNotVisibleException e) {
+			reportStep("Text: "+gText+" you are looking is not visible on the Web page" , "FAIL");
+		}
+		return gText;
+	}
+
+	/*
+	 * This method will verify the tile of the browser. 
+	 * @param title - "title" as displayed in browser.
+	 * @author SatheeshKanth.Paramasivam
+	 */
+	public boolean verifyTitle(String title)  {
+		boolean bReturn = false;
+		try{
+			if (driver.getTitle().equalsIgnoreCase(title)){
+				reportStep("The title of the page matches with the value :"+title, "PASS");
+				bReturn = true;
+			}else
+				reportStep("The title of the page:"+driver.getTitle()+" did not match with the value :"+title, "SUCCESS");
+
+		}catch (Exception e) {
+			reportStep("Unknown exception occured while verifying the title", "FAIL");
+		}
+		return bReturn;
+	}
 	/**
 	 * This method will verify the Text using the attribute ID and return the boolean value
 	 * @param id- ID of the element
@@ -557,106 +720,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}
 	}
 
-	public void selectVisibleTextById(String ID, String Val) {
-		try {
-			WebElement dropdown = driver.findElement(By.id(ID));
-			Select dd = new Select(dropdown);
-			dd.selectByVisibleText(Val);
-			reportStep("Expected text was successfully Selected" , "PASS");
-		} catch (ElementNotFoundException e) {
-			reportStep("Expected text was not found on the Webpage" , "FAIL");
-		}
-		
-	}
-
-	public void selectVisibleTextByXpath(String XpathVal, String Val) {
-		try {
-			WebElement dropdown = driver.findElement(By.xpath(XpathVal));
-			Select dd = new Select(dropdown);
-			dd.selectByVisibleText(Val);
-			reportStep("Expected text was successfully Selected" , "PASS");
-		} catch (ElementNotFoundException e) {
-			reportStep("Expected text was not found on the Webpage" , "FAIL");
-		}
-		
-	}
-
-	public void selectVisibleTextByName(String Name, String Val) {
-		
-		
-		try {
-			WebElement dropdown = driver.findElement(By.name(Name));
-			Select dd = new Select(dropdown);
-			dd.selectByVisibleText(Val);
-			reportStep("Expected text was successfully Selected" , "PASS");
-		} catch (ElementNotFoundException e) {
-			reportStep("Expected text was not found on the Webpage" , "FAIL");
-		}
-	}
-
-	public void selectVisibleTextByClass(String Class, String Val) {
-		// TODO Auto-generated method stub
-		
-		try {
-			WebElement dropdown = driver.findElement(By.className(Class));
-			Select dd = new Select(dropdown);
-			dd.selectByVisibleText(Val);
-			reportStep("Expected text was successfully Selected" , "PASS");
-		} catch (ElementNotFoundException e) {
-			reportStep("Expected text was not found on the Webpage" , "FAIL");
-		}
-		
-	}
-
-	public void selectVisibleByXpath(String XpathVal, String Val) {
-		// TODO Auto-generated method stub
-		
-		try {
-			WebElement dropdown = driver.findElement(By.className(XpathVal));
-			Select dd = new Select(dropdown);
-			dd.selectByVisibleText(Val);
-			reportStep("Expected text was successfully Selected" , "PASS");
-		} catch (ElementNotFoundException e) {
-			reportStep("Expected text was not found on the Webpage" , "FAIL");
-		}
-		
-	}
-
-	public void selectIndexByName(String Name, String Val) {
-		// TODO Auto-generated method stub
-		try {
-			WebElement dropdown = driver.findElement(By.className(Name));
-			Select dd = new Select(dropdown);
-			dd.selectByVisibleText(Val);
-			reportStep("Expected value was successfully selected based on the index given" , "PASS");
-		} catch (ElementNotFoundException e) {
-			reportStep("Expected value was not found on the Webpage for the provided index" , "FAIL");
-		}
-	}
-
-	public void selectIndextByClass(String Class, String Val) {
-		// TODO Auto-generated method stub
-		try {
-			WebElement dropdown = driver.findElement(By.className(Class));
-			Select dd = new Select(dropdown);
-			dd.selectByVisibleText(Val);
-			reportStep("Expected value was successfully selected based on the index given" , "PASS");
-		} catch (ElementNotFoundException e) {
-			reportStep("Expected value was not found on the Webpage for the provided index" , "FAIL");
-		}
-	}
-
-	public void selectIndexpath(String XpathVal, String Val) {
-		// TODO Auto-generated method stub
-		try {
-			WebElement dropdown = driver.findElement(By.className(XpathVal));
-			Select dd = new Select(dropdown);
-			dd.selectByVisibleText(Val);
-			reportStep("Expected value was successfully selected based on the index given" , "PASS");
-		} catch (ElementNotFoundException e) {
-			reportStep("Expected value was not found on the Webpage for the provided index" , "FAIL");
-		}
-	}
+	
 
 	@Override
 	public long takeSnap(){
@@ -670,6 +734,12 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}
 		return number;
 	}
+
+	
+
+	
+
+	
 
 	
 
