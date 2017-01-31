@@ -10,7 +10,7 @@ import wrappers.PHP_Wrapper;
 public class LoginsPage extends PHP_Wrapper
 {
 	
-	public LoginsPage (RemoteWebDriver driver, ExtentTest test)
+	public LoginsPage (RemoteWebDriver driver, ExtentTest test) throws Exception
 	{
 		this.driver=driver;
 		this.test=test;

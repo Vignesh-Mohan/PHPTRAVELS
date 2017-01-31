@@ -27,7 +27,8 @@ public class TC_001 extends PHP_Wrapper {
 		System.out.println("Inside test method");
 		new LoginsPage(driver, test)
 		.clickCar()
-		.clickStarGrade();
+		.click_Pick_UP_Location()
+		.enter_Pick_UP_Location("Malaysia");
 	
 		
 		

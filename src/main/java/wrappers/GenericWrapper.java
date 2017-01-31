@@ -131,6 +131,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		{
 			reportStep("The element "+ ID +" not Visible","FAIL");
 		}
+		catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 	}
 
 	public void enterByName(String Name, String data) {
@@ -147,6 +151,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		{
 			reportStep("The element "+ Name +" not Visible","FAIL");
 		}
+		catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		
 	}
 
@@ -164,12 +172,17 @@ public class GenericWrapper extends Reporter implements Wrappers
 		{
 			reportStep("The element "+ ClassName +" not Visible","FAIL");
 		}
+		catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		
 	}
 
 	public void enterByXpath(String XpathVal, String data) {
 		try
 		{
+			driver.findElement(By.xpath(XpathVal)).clear();
 			driver.findElement(By.xpath(XpathVal)).sendKeys(data);
 			reportStep("The data: "+data+" entered successfully in field :"+XpathVal, "PASS");
 		}
@@ -181,6 +194,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		{
 			reportStep("The element "+ XpathVal +" not Visible","FAIL");
 		}
+		catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 	}
 
 	public void clickById(String id) {
@@ -196,7 +213,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		catch(ElementNotVisibleException e)
 		{
 			reportStep("The element "+ id +" not Visible","FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		
 	}
 
@@ -213,7 +233,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		catch(ElementNotVisibleException e)
 		{
 			reportStep("The element "+ classVal +" not Visible","FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		
 	}
 
@@ -230,7 +253,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		catch(ElementNotVisibleException e)
 		{
 			reportStep("The element "+ name +" not Visible","FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		
 	}
 
@@ -247,7 +273,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		catch(ElementNotVisibleException e)
 		{
 			reportStep("The element "+ linkName +" not Visible","FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		
 		
 	}
@@ -265,7 +294,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		catch(ElementNotVisibleException e)
 		{
 			reportStep("The element "+ XpathVal +" not Visible","FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		
 	}
 	/*
@@ -305,7 +337,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}
 		catch (ElementNotVisibleException e) {
 			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 	}
 
 	/*
@@ -325,7 +360,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}
 		catch (ElementNotVisibleException e) {
 			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
-		}	}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}	}
 
 	/*
 	 * This method will select the drop down Visible Text using "XpathVal" as locator. 
@@ -344,7 +382,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}
 		catch (ElementNotVisibleException e) {
 			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 	}
 
 	/*
@@ -364,7 +405,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}
 		catch (ElementNotVisibleException e) {
 			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 	}
 
 	/*
@@ -383,7 +427,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("Expected value: "+Val+" was not found on the Webpage for the provided index", "FAIL");
 		}catch (ElementNotVisibleException e) {
 			reportStep("Expected value: "+Val+" is not visible on the Webpage for the provided index", "FAIL");
-			}
+			}catch (Exception e) {
+				
+				reportStep("OOPS! Unknown Expection error ","FAIL");
+				}
 		}
 
 	/*
@@ -402,7 +449,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("Expected value: "+Val+" was not found on the Webpage for the provided index", "FAIL");
 		}catch (ElementNotVisibleException e) {
 			reportStep("Expected value: "+Val+" is not visible on the Webpage for the provided index", "FAIL");
-			}
+			}catch (Exception e) {
+				
+				reportStep("OOPS! Unknown Expection error ","FAIL");
+				}
 	}
 
 	/*
@@ -421,7 +471,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("Expected value: "+Val+" was not found on the Webpage for the provided index", "FAIL");
 		}catch (ElementNotVisibleException e) {
 			reportStep("Expected value: "+Val+" is not visible on the Webpage for the provided index", "FAIL");
-			}
+			}catch (Exception e) {
+				
+				reportStep("OOPS! Unknown Expection error ","FAIL");
+				}
 	}
 
 	/*
@@ -437,7 +490,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
 		}catch (ElementNotVisibleException e) {
 			reportStep("Text: "+gText+" you are looking is not visible on the Web page", "FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		return gText;
 	}
 
@@ -454,7 +510,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
 		}catch (ElementNotVisibleException e) {
 			reportStep("Text: "+gText+" you are looking is not visible on the Web page", "FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		return gText;
 	}
 
@@ -471,7 +530,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
 		}catch (ElementNotVisibleException e) {
 			reportStep("Text: "+gText+" you are looking is not visible on the Web page", "FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		return gText;
 	}
 
@@ -488,7 +550,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
 		}catch (ElementNotVisibleException e) {
 			reportStep("Text: "+gText+" you are looking is not visible on the Web page", "FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		return gText;
 	}
 
@@ -505,7 +570,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("Text: "+gText+" you are looking is not available on the Web page", "FAIL");
 		}catch (ElementNotVisibleException e) {
 			reportStep("Text: "+gText+" you are looking is not visible on the Web page" , "FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("OOPS! Unknown Expection error ","FAIL");
+			}
 		return gText;
 	}
 
@@ -514,7 +582,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param title - "title" as displayed in browser.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public boolean verifyTitle(String title)  {
+	public boolean verifyTitle(String title) throws Exception  {
 		boolean bReturn = false;
 		try{
 			if (driver.getTitle().equalsIgnoreCase(title)){

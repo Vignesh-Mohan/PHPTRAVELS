@@ -32,4 +32,10 @@ public class CarsListingPage extends PHP_Wrapper{
 		clickByLink("Pick up Location");
 		return this;
 	}
+	
+	public CarsListingPage enter_Pick_UP_Location(String data)
+	{
+		enterByXpath("(//div[@class='select2-search'])[2]",data);
+		return this;
+	}
 }
