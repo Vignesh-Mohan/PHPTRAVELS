@@ -1,5 +1,6 @@
 package pages;
 
+
 import wrappers.GenericWrapper;
 
 public class SearchResultPage extends GenericWrapper

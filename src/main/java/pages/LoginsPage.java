@@ -7,18 +7,20 @@ import com.relevantcodes.extentreports.ExtentTest;
 
 import wrappers.PHP_Wrapper;
 
-public class LoginPage extends PHP_Wrapper
+public class LoginsPage extends PHP_Wrapper
 {
 	
-	public LoginPage (RemoteWebDriver driver, ExtentTest test)
+	public LoginsPage (RemoteWebDriver driver, ExtentTest test)
 	{
 		this.driver=driver;
 		this.test=test;
 		
-		/*if(verifyTitle("PHPTRAVELS | Travel Technology Partner")==true)
+		if(!verifyTitle("PHPTRAVELS | Travel Technology Partner"))
 		{
-			System.out.println("Page title equals");
-		}*/
+			reportStep("This is not my PHP Travels Page","FAIL");
+		}
+		
+		
 	}	
 		
 		public CarsListingPage clickCar() throws Throwable

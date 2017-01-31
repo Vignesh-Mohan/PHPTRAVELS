@@ -1,28 +1,22 @@
 package wrappers;
 
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 
-public class PHP_Wrapper extends GenericWrapper
-{
+import basket.DataInputProvider;
+
+
+
+public class PHP_Wrapper extends GenericWrapper {
 	
-	public static String browserName;
-	public static String LoginAs;
-	//public String LoginAs;
-	public String dataSheetName;
+	public String browserName;
+	public String dataSheetName,LoginAS;
 	
-/*	public PHP_Wrapper(RemoteWebDriver driver, ExtentTest test) 
-	{
-		super(driver,test);
-		this.driver=driver;
-		this.test=test;
-		
-	}*/
 	
 
 	@BeforeSuite
@@ -30,19 +24,14 @@ public class PHP_Wrapper extends GenericWrapper
 		startResult();
 	}
 
-	@BeforeTest
-	public void beforeTest()
-	{
-		
-	}
+	
 	
 	@BeforeMethod
 	public void beforeMethod(){
 		test = startTestCase(testCaseName, testDescription);
 		test.assignCategory(category);
 		test.assignAuthor(authors);
-		
-		invokeApp(browserName,LoginAs);
+		invokeApp(browserName,LoginAS);
 	}
 		
 	@AfterSuite
@@ -50,10 +39,7 @@ public class PHP_Wrapper extends GenericWrapper
 		endResult();
 	}
 
-	@AfterTest
-	public void afterTest(){
-		
-	}
+	
 	
 	@AfterMethod
 	public void afterMethod(){
@@ -62,12 +48,16 @@ public class PHP_Wrapper extends GenericWrapper
 		
 	}
 	
-	/*@DataProvider(name="fetchData")
+	@DataProvider(name="fetchData")
 	public Object[][] getData(){
 		return DataInputProvider.getSheet(dataSheetName);		
 	}	
-	*/
 	
-
 	
 }
+
+
+
+
+
+

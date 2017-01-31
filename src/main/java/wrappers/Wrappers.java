@@ -26,16 +26,75 @@ public interface Wrappers
 	public String getTextByLinkText(String LinkText) throws Exception;
 	public String getTextByXpath(String XpathVal) throws Exception;
 	public boolean verifyTitle(String title) throws Exception;
-	public void verifyTextById(String id, String text);
-	public void verifyTextByXpath(String xpath, String text);
-	public void verifyTextContainsByXpath(String xpath, String text);
-	public void verifyTextContainsById(String id, String text);
-	public void acceptAlert();
-	public void cancelAlert();
-	public void switchToParentWindow();
-	public void switchToLastWindow();
-	public void closeBrowser();
-	public void quitBrowser();
 	
+
+
+	public void verifyTextById(String id, String text);
+	/**
+	 * This method will verify the Text using the attribute ID and return the boolean value
+	 * @param id- ID of the element
+	 * @param text- Text to be verified
+	 * @author Vignesh.mohan
+	 */
+	
+	public void verifyTextByXpath(String xpath, String text);
+	/**
+	 * This method will verify the Text using the attribute Xpath and return the boolean value
+	 * @param xpath- xpath of the element
+	 * @param text- Text to be verified
+	 * @author Vignesh.mohan
+	 */
+	
+	public void verifyTextContainsByXpath(String xpath, String text);
+	/**
+	 * This method will verify if the given text is available in the element using attribute XPath
+	 * @param xpath- xpath of the element
+	 * @param text- Text to be verified
+	 * @author Vignesh.mohan
+	 */
+	
+	public void verifyTextContainsById(String id, String text);
+	/**
+	 * This method will verify if the given text is available in the element using attribute id
+	 * @param id- id of the element
+	 * @param text- Text to be verified
+	 * @author Vignesh.mohan
+	 */
+	
+	public void acceptAlert();
+	/**
+	 * This method will switch the control to Alert and accept the alert.
+	 * @author Vignesh.mohan
+	 */
+	
+	public void cancelAlert();
+	/**
+	 * This method will switch the control to Alert and Dismiss the alert.
+	 * @author Vignesh.mohan
+	 */
+	
+	public void switchToParentWindow();
+	/**
+	 * This method will switch the control to the Parent Window
+	 * @author Vignesh.mohan
+	 */
+	
+	public void switchToLastWindow();
+	/**
+	 * This method will switch the control to the Last Window
+	 * @author Vignesh.mohan
+	 */
+	
+	public void closeBrowser();
+	/**
+	 * This method will close all the browsers
+	 * @author Vignesh.mohan
+	 */
+	
+	public void quitBrowser();
+	/**
+	 * This method will close all the browsers
+	 * @author Vignesh.mohan
+	 */
 	
 }

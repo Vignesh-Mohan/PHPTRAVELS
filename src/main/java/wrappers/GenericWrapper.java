@@ -29,9 +29,16 @@ import basket.Reporter;
 public class GenericWrapper extends Reporter implements Wrappers 
 
 {
+	
+	public GenericWrapper(RemoteWebDriver driver, ExtentTest test)
+	{
+		this.driver=driver;
+		this.test=test;
+	}
+	
 	//Variables
 	public RemoteWebDriver driver;
-	public ExtentTest test;
+	
 	public String URL;
 	public static Properties prop;
 	
@@ -53,12 +60,6 @@ public class GenericWrapper extends Reporter implements Wrappers
 
 }
 	
-	public GenericWrapper(RemoteWebDriver driver, ExtentTest test)
-	{
-		this.driver=driver;
-		this.test=test;
-	}
-
 	//Invoking the browser with the URL
 	public void invokeApp(String browser, String LoginAs)  
 	{
@@ -734,18 +735,5 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}
 		return number;
 	}
-
-	
-
-	
-
-	
-
-	
-
-
-	
-	
-	
 
 }
