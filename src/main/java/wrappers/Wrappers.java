@@ -125,5 +125,18 @@ public interface Wrappers
 	public void expectedWait_ElementToBeVisible(WebElement element);
 	/**
 	 * This method will wait until element is visible
+	 * @author Vignesh.mohan
+	 */
+	
+	public void switch_ToFrame(String xpathval);
+	/**
+	 * This method will switch the focus to the frame
+	 * @author Vignesh.mohan
+	 */
+	
+	public void switch_To_DefaultContent();
+	/**
+	 * This method will switch the focus to the Default Content
+	 * @author Vignesh.mohan
 	 */
 }

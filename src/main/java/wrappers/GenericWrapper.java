@@ -876,6 +876,34 @@ public class GenericWrapper extends Reporter implements Wrappers
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 	
+	/**
+	 * This method will switch the focus to the frame
+	 * @author Vignesh.mohan
+	 */
+	public void switch_ToFrame(String xpathval)
+	{
+		try {
+			WebElement frame = driver.findElement(By.xpath(xpathval));
+			driver.switchTo().frame(frame);
+			
+		} catch (Exception e) {
+			reportStep("Frame is not switched","FAIL");
+		}
+		
+	}
+	/**
+	 * This method will switch the focus to the Default Content
+	 * @author Vignesh.mohan
+	 */
+		public void switch_To_DefaultContent()
+	
+		{
+			try {
+				driver.switchTo().defaultContent();
+			} catch (Exception e) {
+				reportStep("Frame is not switched to default content","FAIL");
+			}
+	}
 	@Override
 	public long takeSnap(){
 		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 
