@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -13,11 +14,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -255,7 +259,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("The element "+ name +" not Visible","FAIL");
 		}catch (Exception e) {
 			
-			reportStep("OOPS! Unknown Expection error ","FAIL");
+			reportStep("OOPS! Unknown Expection error,The element "+ name +" not Found","FAIL");
 			}
 		
 	}
@@ -296,7 +300,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 			reportStep("The element "+ XpathVal +" not Visible","FAIL");
 		}catch (Exception e) {
 			
-			reportStep("OOPS! Unknown Expection error ","FAIL");
+			reportStep("The element "+ XpathVal +" not Found","FAIL");
 			}
 		
 	}
@@ -306,7 +310,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param Val - Value to be selected from the drop down list(Visible Text).
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public void selectVisibleTextById(String ID, String Val) throws Exception {
+	public void selectVisibleTextById(String ID, String Val)  {
 		try {
 			WebElement dropdown = driver.findElement(By.id(ID));
 			Select dd = new Select(dropdown);
@@ -317,7 +321,10 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}
 		catch (ElementNotVisibleException e) {
 			reportStep("Expected text: "+Val+" is not visible on the Webpage", "FAIL");
-		}
+		}catch (Exception e) {
+			
+			reportStep("Expected text: "+Val+" was not found on the Webpage", "FAIL");
+			}
 	}
 
 	/*
@@ -326,7 +333,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param Val - Value to be selected from the drop down list(Visible Text).
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public void selectVisibleTextByName(String Name, String Val) throws Exception {
+	public void selectVisibleTextByName(String Name, String Val)  {
 		try {
 			WebElement dropdown = driver.findElement(By.name(Name));
 			Select dd = new Select(dropdown);
@@ -349,8 +356,9 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param Val - Value to be selected from the drop down list(Visible Text).
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public void selectVisibleTextByClass(String Class, String Val) throws Exception {
+	public void selectVisibleTextByClass(String Class, String Val)  {
 		try {
+						
 			WebElement dropdown = driver.findElement(By.className(Class));
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
@@ -371,7 +379,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param Val - Value to be selected from the drop down list(Visible Text).
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public void selectVisibleByXpath(String XpathVal, String Val) throws Exception {
+	public void selectVisibleByXpath(String XpathVal, String Val)  {
 		try {
 			WebElement dropdown = driver.findElement(By.className(XpathVal));
 			Select dd = new Select(dropdown);
@@ -394,7 +402,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param Val - Value to be selected from the drop down.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public void selectIndexById(String ID, String Val) throws Exception {
+	public void selectIndexById(String ID, String Val)  {
 		try {
 			WebElement dropdown = driver.findElement(By.className(ID));
 			Select dd = new Select(dropdown);
@@ -417,9 +425,9 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param Val - Value to be selected from thedrop down.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public void selectIndextByName(String Name, String Val) throws Exception {
+	public void selectIndextByName(String Name, String Val)  {
 		try {
-			WebElement dropdown = driver.findElement(By.className(Name));
+			WebElement dropdown = driver.findElement(By.name(Name));
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
 			reportStep("Expected value: "+Val+" was selected successfully based on the index given", "PASS");
@@ -428,7 +436,6 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}catch (ElementNotVisibleException e) {
 			reportStep("Expected value: "+Val+" is not visible on the Webpage for the provided index", "FAIL");
 			}catch (Exception e) {
-				
 				reportStep("OOPS! Unknown Expection error ","FAIL");
 				}
 		}
@@ -461,7 +468,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param Val - Value to be selected from the drop down.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public void selectIndexpath(String XpathVal, String Val) throws Exception {
+	public void selectIndexpath(String XpathVal, String Val)  {
 		try {
 			WebElement dropdown = driver.findElement(By.className(XpathVal));
 			Select dd = new Select(dropdown);
@@ -482,7 +489,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param ID - "ID" locator of the element.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public String getTextById(String IDVal) throws Exception {
+	public String getTextById(String IDVal)  {
 		String gText = driver.findElement(By.id(IDVal)).getText();
 		try {
 			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
@@ -502,7 +509,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param Name - "Name" locator of the element.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public String getTextByName(String Name) throws Exception {
+	public String getTextByName(String Name)  {
 		String gText = driver.findElement(By.name(Name)).getText();
 		try {
 			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
@@ -522,7 +529,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param Class - "Class" locator of the element.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public String getTextByClass(String Class) throws Exception {
+	public String getTextByClass(String Class)  {
 		String gText = driver.findElement(By.className(Class)).getText();
 		try {
 			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
@@ -542,7 +549,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param LinkText - "LinkText" locator of the element.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public String getTextByLinkText(String LinkText) throws Exception {
+	public String getTextByLinkText(String LinkText)  {
 		String gText = driver.findElement(By.linkText(LinkText)).getText();
 		try {
 			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
@@ -562,7 +569,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param XpathVal - "XpathVal" locator of the element.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public String getTextByXpath(String XpathVal) throws Exception {
+	public String getTextByXpath(String XpathVal)  {
 		String gText = driver.findElement(By.xpath(XpathVal)).getText();
 		try {
 			reportStep("Text: "+gText+" was incurred successfully from the web page","PASS");
@@ -582,7 +589,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @param title - "title" as displayed in browser.
 	 * @author SatheeshKanth.Paramasivam
 	 */
-	public boolean verifyTitle(String title) throws Exception  {
+	public boolean verifyTitle(String title)  {
 		boolean bReturn = false;
 		try{
 			if (driver.getTitle().equalsIgnoreCase(title)){
@@ -789,8 +796,57 @@ public class GenericWrapper extends Reporter implements Wrappers
 		}
 	}
 
+	/**
+	 * This method will pick the date in the datepicker using xpath
+	 * @author Vignesh.mohan
+	 */
+	public void daysPicker_UsingXpath(String XpathVal,String dateVal)
+	{
+        try {
+			WebElement day = driver.findElement(By.xpath(XpathVal));
+			
+			List<WebElement> rows = day.findElements(By.tagName("tr"));
+			for(int i = 0;i<rows.size();i++)
+			{
+			       List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
+			       for(int j = 0;j<cols.size();j++)
+			       {
+			             if(cols.get(j).getText().equals(dateVal))
+			             {
+			                    cols.get(j).click();
+			                    break;
+			             }
+			       }
+			}
+			reportStep("Date Selected ","Pass");
+		}catch (StaleElementReferenceException e) {
+			reportStep("Stale Element Exception ","INFO");
+		} catch (Exception e) {
+			reportStep("Date Not  Selected ","Fail");
+		}
+	}
 	
+	
+	/**
+	 * This method will move the element from position 1 to position 2
+	 * XpathValP1 - xpathvalue of the element from position1
+	 * 
+	 * @author Vignesh.mohan
+	 */
 
+	public void action_moveElement(String XpathValP1)
+	{
+		Actions action = new Actions(driver);
+		WebElement pos1 = driver.findElement(By.xpath(XpathValP1));
+		action.clickAndHold(pos1)
+			  .moveToElement(pos1, 150, 962)
+			  .click()
+			  .release()
+			  .build()
+			  .perform();
+	}
+	
+	
 	@Override
 	public long takeSnap(){
 		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 

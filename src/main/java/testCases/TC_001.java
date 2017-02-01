@@ -14,10 +14,10 @@ public class TC_001 extends PHP_Wrapper {
 	{
 		browserName = "chrome";
 		LoginAS="user";
-		testCaseName = "Login";
+		testCaseName = "Quick Search";
 		testDescription = "PHP Travels";
-		category = "smoke";
-		authors = "PHP";
+		category = "Smoke";
+		authors = "Vignesh Mohan";
 		dataSheetName = "TC001";
 	}
 	
@@ -28,7 +28,14 @@ public class TC_001 extends PHP_Wrapper {
 		new LoginsPage(driver, test)
 		.clickCar()
 		.click_Pick_UP_Location()
-		.enter_Pick_UP_Location("Malaysia");
+		.select_Pick_UP_Location()
+		.click_Drop_Off_Location()
+		.click_Pick_Up_Date()
+		.select_Pick_Up_Date("2")
+		.select_Drop_Off_Time()
+		.click_Drop_Off_Date()
+		.select_Dop_Off_Date("6")
+		.click_Quick_Search();
 	
 		
 		

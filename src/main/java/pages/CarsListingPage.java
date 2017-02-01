@@ -7,15 +7,15 @@ import com.relevantcodes.extentreports.ExtentTest;
 import wrappers.PHP_Wrapper;
 
 public class CarsListingPage extends PHP_Wrapper{
-	public CarsListingPage (RemoteWebDriver driver, ExtentTest test)
+	public CarsListingPage (RemoteWebDriver driver, ExtentTest test) 
 	{
 		this.driver=driver;
 		this.test=test;
-		/*if(!verifyTitle("Cars Listings"))
+		if(!verifyTitle("Cars Listings"))
 		{
 			reportStep("This is not Cars Listing Page", "FAIL");
 		
-		}*/
+		}
 	}
 
 	public CarsListingPage clickStarGrade()
@@ -28,14 +28,87 @@ public class CarsListingPage extends PHP_Wrapper{
 	
 	public CarsListingPage click_Pick_UP_Location()
 	{
-		System.out.println("In CarListing Page");
+		
 		clickByLink("Pick up Location");
 		return this;
 	}
 	
-	public CarsListingPage enter_Pick_UP_Location(String data)
+	public CarsListingPage select_Pick_UP_Location()
 	{
-		enterByXpath("(//div[@class='select2-search'])[2]",data);
+		clickByXpath("//div[contains(text(),'Nile Egypt')]");
 		return this;
 	}
+	
+	public CarsListingPage click_Drop_Off_Location()
+	{
+		clickByLink("Drop off Location");
+		return this;
+	}
+	
+	public CarsListingPage click_Pick_Up_Date()
+	{
+		clickByName("pickupDate");
+		return this;
+	}
+	
+	public CarsListingPage select_Pick_Up_Date(String dateVal)
+	{
+		daysPicker_UsingXpath("(//div[@class='datepicker-days']/table)", dateVal);
+		return this;
+	}
+	
+	public CarsListingPage click_Drop_Off_Date()
+	{
+		clickByName("dropoffDate");
+		return this;
+	}
+	
+	
+	
+	public CarsListingPage select_Dop_Off_Date(String dateVal)
+	{
+		// for selecting month
+		
+		daysPicker_UsingXpath("(//div[@class='datepicker-days']/table)[2]", dateVal);
+		return this;
+	
+	}
+	
+	public CarsListingPage select_Drop_Off_Time()
+	{
+		selectIndextByName("dropoffTime", "07:00");
+		return this;
+	}
+	public CarsListingPage  click_Quick_Search()
+	{
+		clickByXpath("(//button[contains(text(),'Search')])[1]");
+		return this;
+	}
+	
+	public CarsListingPage click_Price_Range()
+	{
+		
+		return null;
+		
+	}
+	
+	public CarsListingPage click_Car_Type()
+	{
+		clickByXpath("(//div[@class='iradio_square-grey'])[8]");
+		return this;
+		
+	}
+	
+	public CarsListingPage click_Airport_Pickup(String Val)
+	{
+		selectIndextByClass("selectx", Val); 
+		return this;
+	}
+	
+	public CarsListingPage click_Filter_Search()
+	{
+		clickById("searchform");
+		return this;
+	}
+
 }

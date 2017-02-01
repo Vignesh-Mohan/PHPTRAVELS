@@ -12,20 +12,20 @@ public interface Wrappers
 	public void clickByName(String name);
 	public void clickByLink(String linkName);
 	public void clickByXpath(String XpathVal);
-	public void selectVisibleTextById(String ID, String Val) throws Exception;
-	public void selectVisibleTextByName(String Name, String Val) throws Exception;
-	public void selectVisibleTextByClass(String Class, String Val) throws Exception;
-	public void selectVisibleByXpath(String XpathVal, String Val) throws Exception;
-	public void selectIndexById(String ID, String Val) throws Exception;
-	public void selectIndextByName(String Name, String Val) throws Exception;
+	public void selectVisibleTextById(String ID, String Val);
+	public void selectVisibleTextByName(String Name, String Val) ;
+	public void selectVisibleTextByClass(String Class, String Val) ;
+	public void selectVisibleByXpath(String XpathVal, String Val) ;
+	public void selectIndexById(String ID, String Val) ;
+	public void selectIndextByName(String Name, String Val) ;
 	public void selectIndextByClass(String Class, String Val); 
-	public void selectIndexpath(String XpathVal, String Val) throws Exception;
-	public String getTextById(String IDVal) throws Exception;
-	public String getTextByName(String Name) throws Exception;
-	public String getTextByClass(String Class) throws Exception;
-	public String getTextByLinkText(String LinkText) throws Exception;
-	public String getTextByXpath(String XpathVal) throws Exception;
-	public boolean verifyTitle(String title) throws Exception;
+	public void selectIndexpath(String XpathVal, String Val) ;
+	public String getTextById(String IDVal) ;
+	public String getTextByName(String Name) ;
+	public String getTextByClass(String Class) ;
+	public String getTextByLinkText(String LinkText) ;
+	public String getTextByXpath(String XpathVal) ;
+	public boolean verifyTitle(String title) ;
 	
 
 
@@ -97,4 +97,16 @@ public interface Wrappers
 	 * @author Vignesh.mohan
 	 */
 	
+	public void daysPicker_UsingXpath(String XpathVal,String dateVal);
+	/**
+	 * This method will pick the date in the datepicker using xpath
+	 * @author Vignesh.mohan
+	 */
+	
+	public void action_moveElement(String XpathValP1);
+	/**
+	 * This method will move the element from position 1 to position 2
+	 * XpathValP1 - xpathvalue of the element from position1
+	 * @author Vignesh.mohan
+	 */
 }
