@@ -87,8 +87,8 @@ public class CarsListingPage extends PHP_Wrapper{
 	
 	public CarsListingPage click_Price_Range()
 	{
-		
-		return null;
+		action_MoveElement_UsingXpath("(//div[@class='slider-handle round'])[2]", -131, 962);
+		return this;
 		
 	}
 	
@@ -101,7 +101,7 @@ public class CarsListingPage extends PHP_Wrapper{
 	
 	public CarsListingPage click_Airport_Pickup(String Val)
 	{
-		selectIndextByClass("selectx", Val); 
+		selectVisibleTextByName("pickup", Val);
 		return this;
 	}
 	

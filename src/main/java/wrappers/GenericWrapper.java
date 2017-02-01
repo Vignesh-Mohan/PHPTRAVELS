@@ -14,8 +14,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
+
 import org.openqa.selenium.StaleElementReferenceException;
+
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,7 +24,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -42,7 +46,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	
 	//Variables
 	public RemoteWebDriver driver;
-	
+	public WebDriverWait wait;
 	public String URL;
 	public static Properties prop;
 	
@@ -143,7 +147,8 @@ public class GenericWrapper extends Reporter implements Wrappers
 
 	public void enterByName(String Name, String data) {
 		try
-		{
+		{	
+			driver.findElement(By.name(Name)).clear();
 			driver.findElement(By.name(Name)).sendKeys(data);
 			reportStep("The data: "+data+" entered successfully in field :"+Name, "PASS");
 		}
@@ -360,6 +365,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try {
 						
 			WebElement dropdown = driver.findElement(By.className(Class));
+			expectedWait_ElementToBeVisible(dropdown);
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
 			reportStep("Expected text: "+Val+" was selected successfully", "PASS");
@@ -428,6 +434,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	public void selectIndextByName(String Name, String Val)  {
 		try {
 			WebElement dropdown = driver.findElement(By.name(Name));
+			expectedWait_ElementToBeVisible(dropdown);
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
 			reportStep("Expected value: "+Val+" was selected successfully based on the index given", "PASS");
@@ -829,23 +836,45 @@ public class GenericWrapper extends Reporter implements Wrappers
 	
 	/**
 	 * This method will move the element from position 1 to position 2
-	 * XpathValP1 - xpathvalue of the element from position1
+	 * XpathVal - xpathvalue of the element from position1
 	 * 
 	 * @author Vignesh.mohan
 	 */
 
-	public void action_moveElement(String XpathValP1)
+	public void action_MoveElement_UsingXpath(String xpathval,int x,int y)
 	{
-		Actions action = new Actions(driver);
-		WebElement pos1 = driver.findElement(By.xpath(XpathValP1));
-		action.clickAndHold(pos1)
-			  .moveToElement(pos1, 150, 962)
-			  .click()
-			  .release()
-			  .build()
-			  .perform();
+		Actions move = new Actions(driver);
+		
+		move.moveToElement(driver.findElementByXPath(xpathval))
+			.click()
+			.dragAndDropBy(driver.findElementByXPath(xpathval), x, y)
+			.build()
+			.perform();
 	}
 	
+	/**
+	 * This method will move the element from position 1 to position 2
+	 * Id - Id of the element from position1
+	 * 
+	 * @author Vignesh.mohan
+	 */
+
+	public void action_MoveElement_Usingid(String id,int x,int y)
+	{
+		Actions move = new Actions(driver);
+		
+		move.moveToElement(driver.findElementById(id))
+			.click()
+			.dragAndDropBy(driver.findElementById(id), x, y)
+			.build()
+			.perform();
+	}
+	
+	public void expectedWait_ElementToBeVisible(WebElement element)
+	{
+		new WebDriverWait(driver,60);
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
 	
 	@Override
 	public long takeSnap(){

@@ -1,7 +1,8 @@
 package testCases;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 import pages.LoginsPage;
 import wrappers.PHP_Wrapper;
 
@@ -10,7 +11,7 @@ public class TC_002 extends PHP_Wrapper {
 
 
 	@BeforeClass
-	public void TC_001_Data()
+	public void TC_002_Data()
 	{
 		browserName = "chrome";
 		LoginAS="user";
@@ -29,7 +30,8 @@ public class TC_002 extends PHP_Wrapper {
 		.clickCar()
 		.clickStarGrade()
 		.click_Car_Type()
-		.click_Airport_Pickup("1")
+		.click_Price_Range()
+		.click_Airport_Pickup("Yes")
 		.click_Filter_Search();
 		
 		

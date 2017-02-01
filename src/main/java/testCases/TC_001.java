@@ -1,7 +1,8 @@
 package testCases;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 import pages.LoginsPage;
 import wrappers.PHP_Wrapper;
 

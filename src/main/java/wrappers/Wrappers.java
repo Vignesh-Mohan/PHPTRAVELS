@@ -1,5 +1,7 @@
 package wrappers;
 
+import org.openqa.selenium.WebElement;
+
 public interface Wrappers 
 {
 	public void invokeApp(String browser, String LoginAs);
@@ -103,10 +105,25 @@ public interface Wrappers
 	 * @author Vignesh.mohan
 	 */
 	
-	public void action_moveElement(String XpathValP1);
+	public void action_MoveElement_UsingXpath(String xpathval,int x,int y);
 	/**
 	 * This method will move the element from position 1 to position 2
 	 * XpathValP1 - xpathvalue of the element from position1
 	 * @author Vignesh.mohan
+	 */
+	
+	
+
+	public void action_MoveElement_Usingid(String id,int x,int y);
+	/**
+	 * This method will move the element from position 1 to position 2
+	 * Id - Id of the element from position1
+	 * 
+	 * @author Vignesh.mohan
+	 */
+	
+	public void expectedWait_ElementToBeVisible(WebElement element);
+	/**
+	 * This method will wait until element is visible
 	 */
 }
