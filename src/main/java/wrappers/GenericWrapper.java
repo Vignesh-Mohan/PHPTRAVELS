@@ -127,6 +127,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 		
 		try
 		{
+			driver.findElement(By.id(ID)).clear();
 			driver.findElement(By.id(ID)).sendKeys(data);
 			reportStep("The data: "+data+" entered successfully in field :"+ID, "PASS");
 			
@@ -170,6 +171,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	public void enterByClass(String ClassName, String data) {
 		try
 		{
+			driver.findElement(By.className(ClassName)).clear();
 			driver.findElement(By.className(ClassName)).sendKeys(data);
 			reportStep("The data: "+data+" entered successfully in field :"+ClassName, "PASS");
 		}
@@ -365,7 +367,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 		try {
 						
 			WebElement dropdown = driver.findElement(By.className(Class));
-			expectedWait_ElementToBeVisible(dropdown);
+			
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
 			reportStep("Expected text: "+Val+" was selected successfully", "PASS");
@@ -387,7 +389,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 */
 	public void selectVisibleByXpath(String XpathVal, String Val)  {
 		try {
-			WebElement dropdown = driver.findElement(By.className(XpathVal));
+			WebElement dropdown = driver.findElement(By.xpath(XpathVal));
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
 			reportStep("Expected text: "+Val+" was selected successfully", "PASS");
@@ -410,7 +412,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 */
 	public void selectIndexById(String ID, String Val)  {
 		try {
-			WebElement dropdown = driver.findElement(By.className(ID));
+			WebElement dropdown = driver.findElement(By.id(ID));
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
 			reportStep("Expected text: "+Val+" was selected successfully", "PASS");
@@ -434,7 +436,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	public void selectIndextByName(String Name, String Val)  {
 		try {
 			WebElement dropdown = driver.findElement(By.name(Name));
-			expectedWait_ElementToBeVisible(dropdown);
+			
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
 			reportStep("Expected value: "+Val+" was selected successfully based on the index given", "PASS");
@@ -477,7 +479,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 */
 	public void selectIndexpath(String XpathVal, String Val)  {
 		try {
-			WebElement dropdown = driver.findElement(By.className(XpathVal));
+			WebElement dropdown = driver.findElement(By.xpath(XpathVal));
 			Select dd = new Select(dropdown);
 			dd.selectByVisibleText(Val);
 			reportStep("Expected value: "+Val+" was selected successfully based on the index given", "PASS");
@@ -642,7 +644,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 */
 	public void verifyTextByXpath(String xpath, String text) {
 		try {
-			String vtext =	driver.findElement(By.id(xpath)).getText();
+			String vtext =	driver.findElement(By.xpath(xpath)).getText();
 			if(vtext.equalsIgnoreCase(text))
 			{
 				reportStep("The text "+vtext+" matches with the expected text value : "+text,"PASS");
@@ -665,7 +667,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 */
 	public void verifyTextContainsByXpath(String xpath, String text) {
 		try {
-			String vtext =	driver.findElement(By.id(xpath)).getText();
+			String vtext =	driver.findElement(By.xpath(xpath)).getText();
 			if(vtext.contains(text))
 			{
 				reportStep("The text "+vtext+" contains the value : "+text,"PASS");
@@ -713,7 +715,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 		
 		try {
 			driver.switchTo().alert().accept();
-			reportStep("The alert is accepted","PASS");
+			
 		} catch (NoAlertPresentException e) {
 			reportStep("OOPS! Alert is not handled","FAIL");
 		}catch (Exception e) {
@@ -843,13 +845,18 @@ public class GenericWrapper extends Reporter implements Wrappers
 
 	public void action_MoveElement_UsingXpath(String xpathval,int x,int y)
 	{
-		Actions move = new Actions(driver);
-		
-		move.moveToElement(driver.findElementByXPath(xpathval))
-			.click()
-			.dragAndDropBy(driver.findElementByXPath(xpathval), x, y)
-			.build()
-			.perform();
+		try {
+			Actions move = new Actions(driver);
+			
+			move.moveToElement(driver.findElementByXPath(xpathval))
+				.click()
+				.dragAndDropBy(driver.findElementByXPath(xpathval), x, y)
+				.build()
+				.perform();
+			reportStep("The action is performed Sucessfully","PASS");
+		} catch (Exception e) {
+			reportStep("The action is not performed","FAIL");
+		}
 	}
 	
 	/**
@@ -870,10 +877,24 @@ public class GenericWrapper extends Reporter implements Wrappers
 			.perform();
 	}
 	
-	public void expectedWait_ElementToBeVisible(WebElement element)
+	public void action_clickElement_UsingXpath(String xpath)
 	{
-		new WebDriverWait(driver,60);
-		wait.until(ExpectedConditions.visibilityOf(element));
+		Actions move = new Actions(driver);
+		
+		move.moveToElement(driver.findElementByXPath(xpath))
+			.click()
+			.build()
+			.perform();
+	}
+	
+	public void expectedWait_ElementToBeclickable(WebElement element)
+	{
+		try {
+			new WebDriverWait(driver,60);
+			wait.until(ExpectedConditions.elementToBeClickable(element));
+		} catch (Exception e) {
+			reportStep("OOPS! Unknown Exception","FAIL");
+		}
 	}
 	
 	/**
@@ -904,6 +925,130 @@ public class GenericWrapper extends Reporter implements Wrappers
 				reportStep("Frame is not switched to default content","FAIL");
 			}
 	}
+		
+		/**
+		 * This method is used to verify text in a table
+		 * @author Vignesh.mohan
+		 */
+		
+		public void verify_Text_in_a_Table(String xpathval,String data)
+		{ 
+			try {
+				
+				
+				List<WebElement> tables = driver.findElements(By.tagName("table"));
+	             for(WebElement table : tables)
+	           {
+	                       
+
+				List<WebElement> rows = table.findElements(By.tagName("tr"));
+				for(int i = 0;i<rows.size();i++)
+				{
+				       List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
+				       for(int j = 0;j<cols.size();j++)
+				       {
+				             if(cols.get(j).getText().equalsIgnoreCase(data))
+				             {
+				                    System.out.println("Match found");
+				                    break;
+				             }
+				       }
+				}
+				reportStep("The given data "+data+"matches","PASS");
+			}
+			}
+                                
+                catch(StaleElementReferenceException e)
+                {
+                      e.printStackTrace();
+                      System.out.println("Stale element reference exception");
+                }
+
+                
+		}	
+		
+		
+		/**
+		 * This method is used to click_column_in_a_Table
+		 */
+		public void click_column_in_a_Table(String xpathval,String buttonxpath,String data)
+		{
+try {
+				
+				
+				List<WebElement> tables = driver.findElements(By.tagName("table"));
+	             for(WebElement table : tables)
+	           {
+	                       
+
+				List<WebElement> rows = table.findElements(By.tagName("tr"));
+				for(int i = 0;i<rows.size();i++)
+				{
+				       List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
+				       for(int j = 0;j<cols.size();j++)
+				       {
+				             if(cols.get(j).getText().equalsIgnoreCase(data))
+				             {
+				                    System.out.println("Match found");
+				                    
+				                  cols.get(j+3).findElement(By.xpath(buttonxpath)).click();;
+				                  
+				                    break;
+				             }
+				       }
+				}
+				reportStep("The given data "+data+"matches","PASS");
+			}
+			}
+                                
+                catch(StaleElementReferenceException e)
+                {
+                      e.printStackTrace();
+                      System.out.println("Stale element reference exception");
+                }
+
+                
+		}	
+		
+		
+		public void clickColumnInATableWithAlert(String xpathval,String buttonxpath,String data)
+		{
+try {
+				
+				
+				List<WebElement> tables = driver.findElements(By.tagName("table"));
+	             for(WebElement table : tables)
+	           {
+	                       
+
+				List<WebElement> rows = table.findElements(By.tagName("tr"));
+				for(int i = 0;i<rows.size();i++)
+				{
+				       List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
+				       for(int j = 0;j<cols.size();j++)
+				       {
+				             if(cols.get(j).getText().equalsIgnoreCase(data))
+				             {
+				                    System.out.println("Match found");
+				                    
+				                  cols.get(j+3).findElement(By.xpath(buttonxpath)).click();
+				                  driver.switchTo().alert().accept();
+				                    break;
+				             }
+				       }
+				}
+				reportStep("The given data "+data+"matches","PASS");
+			}
+			}
+                                
+                catch(StaleElementReferenceException e)
+                {
+                      e.printStackTrace();
+                      System.out.println("Stale element reference exception");
+                }
+
+		}
+		
 	@Override
 	public long takeSnap(){
 		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 

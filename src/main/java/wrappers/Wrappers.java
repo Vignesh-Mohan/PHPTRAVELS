@@ -122,7 +122,7 @@ public interface Wrappers
 	 * @author Vignesh.mohan
 	 */
 	
-	public void expectedWait_ElementToBeVisible(WebElement element);
+	public void expectedWait_ElementToBeclickable(WebElement element);
 	/**
 	 * This method will wait until element is visible
 	 * @author Vignesh.mohan

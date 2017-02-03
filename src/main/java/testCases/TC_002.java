@@ -3,7 +3,10 @@ package testCases;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 
-import pages.LoginsPage;
+
+
+
+import pages.PhpPage;
 import wrappers.PHP_Wrapper;
 
 
@@ -26,7 +29,7 @@ public class TC_002 extends PHP_Wrapper {
 	public void runTest1() throws Throwable 
 	{
 		System.out.println("Inside test method");
-		new LoginsPage(driver, test)
+		new PhpPage(driver, test)
 		.clickCar()
 		.clickStarGrade()
 		.click_Car_Type()
