@@ -21,7 +21,7 @@ public class TC_008 extends PHP_Wrapper {
 		testDescription = "PHP Travels";
 		category = "Smoke";
 		authors = "Vignesh Mohan";
-		dataSheetName = "TC007";
+		dataSheetName = "TC008";
 	}
 	String carname ="Vicky Lambourgini";
 	@Test
