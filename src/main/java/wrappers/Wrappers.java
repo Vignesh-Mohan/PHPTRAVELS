@@ -1,5 +1,6 @@
 package wrappers;
 
+
 import org.openqa.selenium.WebElement;
 
 public interface Wrappers 
@@ -99,13 +100,13 @@ public interface Wrappers
 	 * @author Vignesh.mohan
 	 */
 	
-	public void daysPicker_UsingXpath(String XpathVal,String dateVal);
+	public void daysPickerUsingXpath(String XpathVal,String dateVal);
 	/**
 	 * This method will pick the date in the datepicker using xpath
 	 * @author Vignesh.mohan
 	 */
 	
-	public void action_MoveElement_UsingXpath(String xpathval,int x,int y);
+	public void actionMoveElementUsingXpath(String xpathval,int x,int y);
 	/**
 	 * This method will move the element from position 1 to position 2
 	 * XpathValP1 - xpathvalue of the element from position1
@@ -114,7 +115,7 @@ public interface Wrappers
 	
 	
 
-	public void action_MoveElement_Usingid(String id,int x,int y);
+	public void actionMoveElementUsingid(String id,int x,int y);
 	/**
 	 * This method will move the element from position 1 to position 2
 	 * Id - Id of the element from position1
@@ -122,21 +123,22 @@ public interface Wrappers
 	 * @author Vignesh.mohan
 	 */
 	
-	public void expectedWait_ElementToBeclickable(WebElement element);
+	public void expectedWaitElementToBeVisible(WebElement element);
 	/**
 	 * This method will wait until element is visible
 	 * @author Vignesh.mohan
 	 */
 	
-	public void switch_ToFrame(String xpathval);
+	public void switchToFrame(String xpathval);
 	/**
 	 * This method will switch the focus to the frame
 	 * @author Vignesh.mohan
 	 */
 	
-	public void switch_To_DefaultContent();
+	public void switchToDefaultContent();
 	/**
 	 * This method will switch the focus to the Default Content
 	 * @author Vignesh.mohan
 	 */
+	public void enterByXpathUsingKeys(String xpathVal);
 }

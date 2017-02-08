@@ -7,10 +7,10 @@ import com.relevantcodes.extentreports.ExtentTest;
 
 import wrappers.PHP_Wrapper;
 
-public class PhpPage extends PHP_Wrapper
+public class UserPhpPage extends PHP_Wrapper
 {
 	
-	public PhpPage (RemoteWebDriver driver, ExtentTest test) 
+	public UserPhpPage (RemoteWebDriver driver, ExtentTest test) 
 	{
 		this.driver=driver;
 		this.test=test;
@@ -23,18 +23,18 @@ public class PhpPage extends PHP_Wrapper
 		
 	}	
 		
-		public CarsListingPage clickCar() 
+		public UserCarsListingPage clickCar() 
 		{
 			System.out.println("In Click Car page");
 			clickByLink("Cars");
-			return new CarsListingPage(driver,test);
+			return new UserCarsListingPage(driver,test);
 		}
 		
 		
-		public PhpPage addNewsLetterSubscriber(String data)
+		public UserPhpPage addNewsLetterSubscriber(String data)
 		{
 			enterById("exampleInputEmail1", data);
-			action_clickElement_UsingXpath("(//button[@type='submit'])[4]");
+			actionClickElementUsingXpath("(//button[@type='submit'])[4]");
 		
 			return this;
 		}

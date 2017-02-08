@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
 
@@ -171,6 +172,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	public void enterByClass(String ClassName, String data) {
 		try
 		{
+			
 			driver.findElement(By.className(ClassName)).clear();
 			driver.findElement(By.className(ClassName)).sendKeys(data);
 			reportStep("The data: "+data+" entered successfully in field :"+ClassName, "PASS");
@@ -809,7 +811,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * This method will pick the date in the datepicker using xpath
 	 * @author Vignesh.mohan
 	 */
-	public void daysPicker_UsingXpath(String XpathVal,String dateVal)
+	public void daysPickerUsingXpath(String XpathVal,String dateVal)
 	{
         try {
 			WebElement day = driver.findElement(By.xpath(XpathVal));
@@ -843,7 +845,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @author Vignesh.mohan
 	 */
 
-	public void action_MoveElement_UsingXpath(String xpathval,int x,int y)
+	public void actionMoveElementUsingXpath(String xpathval,int x,int y)
 	{
 		try {
 			Actions move = new Actions(driver);
@@ -866,7 +868,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * @author Vignesh.mohan
 	 */
 
-	public void action_MoveElement_Usingid(String id,int x,int y)
+	public void actionMoveElementUsingid(String id,int x,int y)
 	{
 		Actions move = new Actions(driver);
 		
@@ -877,7 +879,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 			.perform();
 	}
 	
-	public void action_clickElement_UsingXpath(String xpath)
+	public void actionClickElementUsingXpath(String xpath)
 	{
 		Actions move = new Actions(driver);
 		
@@ -887,11 +889,11 @@ public class GenericWrapper extends Reporter implements Wrappers
 			.perform();
 	}
 	
-	public void expectedWait_ElementToBeclickable(WebElement element)
+	public void expectedWaitElementToBeVisible(WebElement element)
 	{
 		try {
 			new WebDriverWait(driver,60);
-			wait.until(ExpectedConditions.elementToBeClickable(element));
+			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			reportStep("OOPS! Unknown Exception","FAIL");
 		}
@@ -901,7 +903,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * This method will switch the focus to the frame
 	 * @author Vignesh.mohan
 	 */
-	public void switch_ToFrame(String xpathval)
+	public void switchToFrame(String xpathval)
 	{
 		try {
 			WebElement frame = driver.findElement(By.xpath(xpathval));
@@ -916,7 +918,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 	 * This method will switch the focus to the Default Content
 	 * @author Vignesh.mohan
 	 */
-		public void switch_To_DefaultContent()
+		public void switchToDefaultContent()
 	
 		{
 			try {
@@ -931,7 +933,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 		 * @author Vignesh.mohan
 		 */
 		
-		public void verify_Text_in_a_Table(String xpathval,String data)
+		public void verifyTextInATable(String data)
 		{ 
 			try {
 				
@@ -971,7 +973,7 @@ public class GenericWrapper extends Reporter implements Wrappers
 		/**
 		 * This method is used to click_column_in_a_Table
 		 */
-		public void click_column_in_a_Table(String xpathval,String buttonxpath,String data)
+		public void clickColumnInATable(String buttonxpath,String data)
 		{
 try {
 				
@@ -1011,7 +1013,7 @@ try {
 		}	
 		
 		
-		public void clickColumnInATableWithAlert(String xpathval,String buttonxpath,String data)
+		public void clickColumnInATableWithAlert(String buttonxpath,String data)
 		{
 try {
 				
@@ -1049,6 +1051,241 @@ try {
 
 		}
 		
+		public void enterByXpathUsingKeys(String xpathVal) {
+			try
+			{
+				driver.findElement(By.xpath(xpathVal)).clear();
+				driver.findElement(By.xpath(xpathVal)).sendKeys(Keys.ENTER);
+				reportStep(" Entered successfully in field :"+xpathVal, "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("The element "+ xpathVal +" not Found","FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("The element "+ xpathVal +" not Visible","FAIL");
+			}
+			catch (Exception e) {
+				
+				reportStep("OOPS! Unknown Expection error ","FAIL");
+				}
+		}
+		
+		/**
+		 * 
+		 * @param inputXpath
+		 * @param dropdownXpath
+		 * @param data
+		 */
+		public void enterTextByXpathForSmartTextBox(String inputXpath, String dropdownXpath, String data)
+		{
+			WebElement smartText=driver.findElement(By.xpath(inputXpath));
+			smartText.sendKeys(data);
+			
+			List<WebElement> optionsToSelect = driver.findElements(By.xpath("//ul[@class='select2-results']/li/div/span"));
+
+		    for(WebElement option : optionsToSelect)
+		    {
+		        System.out.println(option);
+		        if(option.getText().contains(data)) 
+		        {
+		            System.out.println("Trying to select: "+data);
+		            option.click();
+		            break;
+		        }
+		    }
+		}
+		
+		/**@author= Nithya*/
+		public void acceptAnAlertAfterClickByClass(String classVal) {
+			try
+			{
+				driver.findElement(By.className(classVal)).click();
+				driver.switchTo().alert().accept();
+				reportStep("Clicked the element "+ classVal , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ classVal +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ classVal +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+	/**@author= Nithya*/
+		public void acceptAnAlertAfterClickById(String id) {
+			try
+			{
+				driver.findElement(By.id(id)).click();
+				driver.switchTo().alert().accept();
+				reportStep("Clicked the element "+ id , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ id +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ id +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+		/**@author= Nithya*/
+		public void acceptAnAlertAfterClickByLinkText(String linkText) {
+			try
+			{
+				driver.findElement(By.linkText(linkText)).click();
+				driver.switchTo().alert().accept();
+				reportStep("Clicked the element "+ linkText , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ linkText +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ linkText +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+		/**@author= Nithya*/
+		public void acceptAnAlertAfterClickByName(String name) {
+			try
+			{
+				driver.findElement(By.name(name)).click();
+				driver.switchTo().alert().accept();
+				reportStep("Clicked the element "+ name , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ name +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ name +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+		/**@author= Nithya*/
+		public void acceptAnAlertAfterClickByXpath(String xpathVal) {
+			try
+			{
+				driver.findElement(By.xpath(xpathVal)).click();
+				driver.switchTo().alert().accept();
+				reportStep("Clicked the element "+ xpathVal , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ xpathVal +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ xpathVal +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+		/**@author=Nithya*/
+		public void clickByXpathForSmartTextBox(String Xpath)
+		{
+			WebElement smartText1=driver.findElement(By.xpath(Xpath));
+			
+			smartText1.click();
+		}
+		/**@author= Nithya*/
+		public void dismissAnAlertAfterClickByClass(String classVal) {
+			try
+			{
+				driver.findElement(By.className(classVal)).click();
+				driver.switchTo().alert().dismiss();
+				reportStep("Clicked the element "+ classVal , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ classVal +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ classVal +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+		/**@author= Nithya*/
+		public void dismissAnAlertAfterClickById(String id) {
+			try
+			{
+				driver.findElement(By.id(id)).click();
+				driver.switchTo().alert().dismiss();
+				reportStep("Clicked the element "+ id , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ id +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ id +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+		/**@author= Nithya*/
+		public void dismissAnAlertAfterClickByLinkText(String linkText) {
+			try
+			{
+				driver.findElement(By.linkText(linkText)).click();
+				driver.switchTo().alert().dismiss();
+				reportStep("Clicked the element "+ linkText , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ linkText +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ linkText +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+		/**@author= Nithya*/
+		public void dismissAnAlertAfterClickByName(String name) {
+			try
+			{
+				driver.findElement(By.name(name)).click();
+				driver.switchTo().alert().dismiss();
+				reportStep("Clicked the element "+ name , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ name +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ name +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+		/**@author= Nithya*/
+		public void dismissAnAlertAfterClickByXpath(String xpathVal) {
+			try
+			{
+				driver.findElement(By.xpath(xpathVal)).click();
+				driver.switchTo().alert().dismiss();
+				reportStep("Clicked the element "+ xpathVal , "PASS");
+			}
+			catch(ElementNotFoundException e)
+			{
+				reportStep("Unable to click the element "+ xpathVal +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			catch(ElementNotVisibleException e)
+			{
+				reportStep("Unable to click the element "+ xpathVal +"\n STACK Trace: "+e.getMessage(), "FAIL");
+			}
+			
+		}
+			
+		
 	@Override
 	public long takeSnap(){
 		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 
@@ -1061,5 +1298,12 @@ try {
 		}
 		return number;
 	}
+
+	public void daysPicker_UsingXpath(String XpathVal, String dateVal) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

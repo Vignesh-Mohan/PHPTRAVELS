@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeClass;
 
 
 
-import pages.PhpPage;
+import pages.UserPhpPage;
 import wrappers.PHP_Wrapper;
 
 
@@ -28,7 +28,7 @@ public class TC_001 extends PHP_Wrapper {
 	public void runTest1() throws Throwable 
 	{
 		System.out.println("Inside test method");
-		new PhpPage(driver, test)
+		new UserPhpPage(driver, test)
 		.clickCar()
 		.click_Pick_UP_Location()
 		.select_Pick_UP_Location()

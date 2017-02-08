@@ -18,9 +18,30 @@ public class AdminDashboardPage extends PHP_Wrapper{
 		}*/
 	}
 
-	public NewsLetterManagementPage click_Newsletter_Tab()
+	public AdminNewsLetterManagementPage click_Newsletter_Tab()
 	{
 		clickByLink("Newsletter");
-		return new NewsLetterManagementPage(driver,test);
+		return new AdminNewsLetterManagementPage(driver,test);
 	}
+	
+	
+	public AdminDashboardPage click_CarsTab() 
+	{
+		clickByXpath("( //i[@class='fa arrow'])[4]");
+		return this;
+	}
+	
+	public AddCarsManagementPage click_Cars()
+	{
+		clickByXpath(" (//a[contains(text(),'Cars')])[1]");
+		return new AddCarsManagementPage(driver,test);
+	}
+	
+	public AdminDashboardPage click_Accounts()
+	{
+		clickById("Accounts");
+		return this;
+	}
+	
+	
 }

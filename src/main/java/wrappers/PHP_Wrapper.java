@@ -44,7 +44,7 @@ public class PHP_Wrapper extends GenericWrapper {
 	@AfterMethod
 	public void afterMethod(){
 		endTestcase();
-		quitBrowser();
+	//	quitBrowser();
 		
 	}
 	
