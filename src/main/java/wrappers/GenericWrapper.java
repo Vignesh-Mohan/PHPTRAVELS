@@ -936,12 +936,11 @@ public class GenericWrapper extends Reporter implements Wrappers
 		public void verifyTextInATable(String data)
 		{ 
 			try {
-				
-				
+								
 				List<WebElement> tables = driver.findElements(By.tagName("table"));
 	             for(WebElement table : tables)
 	           {
-	                       
+	             
 
 				List<WebElement> rows = table.findElements(By.tagName("tr"));
 				for(int i = 0;i<rows.size();i++)

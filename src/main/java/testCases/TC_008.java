@@ -23,7 +23,7 @@ public class TC_008 extends PHP_Wrapper {
 		authors = "Vignesh Mohan";
 		dataSheetName = "TC008";
 	}
-	String carname ="Vicky Lambourgini";
+	String carname ="Vicky Mustangg";
 	@Test
 
 	public void runTest1() throws Throwable 
@@ -59,12 +59,7 @@ public class TC_008 extends PHP_Wrapper {
 		.select_RelatedCars()
 		.click_SubmitCar()
 		.verify_addedCar(carname);
-		
-		
-		
-		
-		
-				
+							
 	}
 
 }

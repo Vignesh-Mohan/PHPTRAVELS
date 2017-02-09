@@ -160,7 +160,7 @@ public class AdminAddCarPage extends PHP_Wrapper{
 		enterByXpath("//input[@class='xcrud-searchdata xcrud-search-active input-small form-control']", data);
 		clickByXpath("//a[@class='xcrud-action btn btn-primary']");
 		Thread.sleep(2000);
-		clickByXpath("(//input[@class='checkboxcls'])[1]");
+	//	clickByXpath("(//input[@class='iCheck-helper'])[1]");
 		verifyTextInATable( data);
 		return this;
 	}

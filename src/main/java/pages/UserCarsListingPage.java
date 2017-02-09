@@ -35,7 +35,7 @@ public class UserCarsListingPage extends PHP_Wrapper{
 	
 	public UserCarsListingPage select_Pick_UP_Location()
 	{
-		clickByXpath("//div[contains(text(),'Nile Egypt')]");
+		clickByXpath("//div[contains(text(),'London')]");
 		return this;
 	}
 	
@@ -45,15 +45,16 @@ public class UserCarsListingPage extends PHP_Wrapper{
 		return this;
 	}
 	
-	public UserCarsListingPage click_Pick_Up_Date()
+	public UserCarsListingPage click_Pick_Up_Date() throws InterruptedException
 	{
+		Thread.sleep(1000);
 		clickByName("pickupDate");
 		return this;
 	}
 	
 	public UserCarsListingPage select_Pick_Up_Date(String dateVal)
 	{
-		daysPicker_UsingXpath("(//div[@class='datepicker-days']/table)", dateVal);
+		daysPickerUsingXpath("(//div[@class='datepicker-days']/table)", dateVal);
 		return this;
 	}
 	
@@ -69,7 +70,7 @@ public class UserCarsListingPage extends PHP_Wrapper{
 	{
 		// for selecting month
 		
-		daysPicker_UsingXpath("(//div[@class='datepicker-days']/table)[2]", dateVal);
+		daysPickerUsingXpath("(//div[@class='datepicker-days']/table)[2]", dateVal);
 		return this;
 	
 	}

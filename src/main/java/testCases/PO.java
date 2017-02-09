@@ -1,5 +1,8 @@
 package testCases;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +18,7 @@ public class PO {
 	public static String data= "oprah@yopmail.com";
 	public static void main(String[] args) throws InterruptedException {
 		
-		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+	/*	System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 		ChromeDriver driver = new ChromeDriver();
 		
 		driver.manage().window().maximize();
@@ -49,6 +52,26 @@ public class PO {
 			System.out.println("The entered Text "+data+" does not match"+"FAIL");
 		}
 
-	}
+	}*/
+		
+		DateFormat dateformat = new SimpleDateFormat("dd//MM//yyyy");
+		Date date = new Date();
+		String currentdate = dateformat.format(date);
+		System.out.println(currentdate);
+		String pdate =currentdate.substring(0, 2);
+		System.out.println(pdate);
+		int ipdate = Integer.parseInt(pdate);
+		
+		int ipickupdate = ipdate +2;
+		int ipickoffdate = ipdate +6;
+		
+		System.out.println(ipickupdate);
+		System.out.println(ipickoffdate);
+		
+		String pickupdate = String.valueOf(ipickupdate);
+		
+		String pickoffdate = String.valueOf(ipickoffdate);
+		
+	}		
 
 }
