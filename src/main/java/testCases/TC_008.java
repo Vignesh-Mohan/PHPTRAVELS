@@ -1,4 +1,4 @@
-package testCases;
+/*package testCases;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
@@ -29,10 +29,10 @@ public class TC_008 extends PHP_Wrapper {
 	public void runTest1() throws Throwable 
 	{
 		
-		/*System.out.println("Inside test method");
+		System.out.println("Inside test method");
 		new PhpPage(driver,test)
 		.addNewsLetterSubscriber(email);
-		invokeApp("chrome", "admin");*/
+		invokeApp("chrome", "admin");
 		new AdminLoginPage(driver, test)
 		.enter_Email("admin@phptravels.com")
 		.enter_Password("demoadmin")
@@ -63,3 +63,4 @@ public class TC_008 extends PHP_Wrapper {
 	}
 
 }
+*/

@@ -1,4 +1,4 @@
-package testCases;
+/*package testCases;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
@@ -39,3 +39,4 @@ public class TC_006 extends PHP_Wrapper {
 	}
 
 }
+*/

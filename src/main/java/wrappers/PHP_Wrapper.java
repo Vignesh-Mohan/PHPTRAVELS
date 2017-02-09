@@ -12,7 +12,7 @@ import basket.DataInputProvider;
 
 
 
-public class PHP_Wrapper extends GenericWrapper {
+public class PHP_Wrapper extends GenericWrappers {
 	
 	public String browserName;
 	public String dataSheetName,LoginAS;
@@ -44,7 +44,7 @@ public class PHP_Wrapper extends GenericWrapper {
 	@AfterMethod
 	public void afterMethod(){
 		endTestcase();
-		//quitBrowser();
+	//	quitBrowser();
 		
 	}
 	
@@ -55,6 +55,7 @@ public class PHP_Wrapper extends GenericWrapper {
 	
 	
 }
+
 
 
 

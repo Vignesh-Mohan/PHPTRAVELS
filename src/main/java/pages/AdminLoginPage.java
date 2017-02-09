@@ -4,35 +4,32 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.relevantcodes.extentreports.ExtentTest;
 
+
 import wrappers.PHP_Wrapper;
 
-public class AdminLoginPage extends PHP_Wrapper{
-	public AdminLoginPage (RemoteWebDriver driver, ExtentTest test) 
-	{
-		this.driver=driver;
-		this.test=test;
-		if(!verifyTitle("Administator Login"))
-		{
-			reportStep("This is not Adminstrator Login Page", "FAIL");
-		
+public class AdminLoginPage extends PHP_Wrapper {
+	public AdminLoginPage(RemoteWebDriver driver, ExtentTest test) {
+		this.driver = driver;
+		this.test = test;
+		if(!verifyTitle("Administator Login")){
+			reportStep("This is not admin login page", "FAIL");
 		}
+		
 	}
-
-	public AdminLoginPage enter_Email(String data)
+	public AdminLoginPage enterUsername(String data)
 	{
-		enterByName("email", data);
+		enterByXpath("//input[@name='email']",data );
 		return this;
 	}
-	
-	public AdminLoginPage enter_Password(String data)
+	public AdminLoginPage enterPassowrd(String data)
 	{
-		enterByName("password", data);
+		enterByXpath("//input[@name='password']",data );
 		return this;
 	}
-	
-	public AdminDashboardPage click_LoginButton()
+	public AdminDashboardPage clickLogin() throws InterruptedException
 	{
-		clickByXpath("//span[contains(text(),'Login')]");
+		clickByXpath("//button[@type='submit']");
+		Thread.sleep(6000);
 		return new AdminDashboardPage(driver,test);
 	}
 }

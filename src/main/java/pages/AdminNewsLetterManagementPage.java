@@ -51,13 +51,13 @@ public class AdminNewsLetterManagementPage extends PHP_Wrapper{
 	
 	public AdminNewsLetterManagementPage select_Type(String Val)
 	{
-		selectVisibleByXpath("(//*[@class='xcrud-input form-control'])[2]", Val);
+		selectVisibleTextByXpath("(//*[@class='xcrud-input form-control'])[2]", Val);
 		return this;
 	}
 	
 	public AdminNewsLetterManagementPage select_enable(String Val)
 	{
-		selectVisibleByXpath("(//*[@class='xcrud-input form-control'])[3]", Val);
+		selectVisibleTextByXpath("(//*[@class='xcrud-input form-control'])[3]", Val);
 		return this;
 	}
 	

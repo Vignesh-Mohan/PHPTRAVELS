@@ -18,7 +18,7 @@ public interface Wrappers
 	public void selectVisibleTextById(String ID, String Val);
 	public void selectVisibleTextByName(String Name, String Val) ;
 	public void selectVisibleTextByClass(String Class, String Val) ;
-	public void selectVisibleByXpath(String XpathVal, String Val) ;
+	public void selectVisibleTextByXpath(String XpathVal, String Val) ;
 	public void selectIndexById(String ID, String Val) ;
 	public void selectIndextByName(String Name, String Val) ;
 	public void selectIndextByClass(String Class, String Val); 
