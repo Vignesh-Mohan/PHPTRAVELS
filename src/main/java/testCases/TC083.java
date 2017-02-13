@@ -25,7 +25,7 @@ public class TC083 extends PHP_Wrapper {
 	}
 	
 	
-	@Test()
+	@Test(dataProvider="fetchData",groups="editCustomer",dependsOnGroups="addCustomer")
 	public void runTC083(String customerLastName) throws Throwable 
 	{
 		new AdminLoginPage(driver, test)

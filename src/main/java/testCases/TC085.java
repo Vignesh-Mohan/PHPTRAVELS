@@ -25,7 +25,7 @@ public class TC085 extends PHP_Wrapper {
 	}
 	
 	
-	@Test(dataProvider="fetchData")
+	@Test(dataProvider="fetchData",groups="addCustomer")
 	public void runTC085(String customerFirstName,String customerLastName,String customerMobile,
 							String customerEmail,String customerPassword,String customerAdd1,
 							String customerAdd2,String customerCountry) throws Throwable 
