@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 public interface Wrappers 
 {
-	public void invokeApp(String browser, String LoginAs);
+	public void invokeApp(String browser, String LoginAs, boolean bRemote);
 	public void enterById(String ID, String data);
 	public void enterByName(String Name, String data);
 	public void enterByClass(String ClassName, String data);
@@ -19,16 +19,17 @@ public interface Wrappers
 	public void selectVisibleTextByName(String Name, String Val) ;
 	public void selectVisibleTextByClass(String Class, String Val) ;
 	public void selectVisibleTextByXpath(String XpathVal, String Val) ;
-	public void selectIndexById(String ID, String Val) ;
-	public void selectIndextByName(String Name, String Val) ;
-	public void selectIndextByClass(String Class, String Val); 
-	public void selectIndexpath(String XpathVal, String Val) ;
+	public void selectIndexById(String ID, int Val) ;
+	public void selectIndexByName(String Name, int Val) ;
+	public void selectIndexByClass(String Class, int Val); 
+	public void selectIndexpath(String XpathVal, int Val) ;
 	public String getTextById(String IDVal) ;
 	public String getTextByName(String Name) ;
 	public String getTextByClass(String Class) ;
 	public String getTextByLinkText(String LinkText) ;
 	public String getTextByXpath(String XpathVal) ;
 	public boolean verifyTitle(String title) ;
+	//public String generateUniqueMailIDs();
 	
 
 

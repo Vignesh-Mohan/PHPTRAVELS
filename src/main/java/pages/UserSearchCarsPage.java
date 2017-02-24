@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.relevantcodes.extentreports.ExtentTest;
@@ -40,15 +41,17 @@ public class UserSearchCarsPage extends PHP_Wrapper{
 		return this;
 	}
 	
-	public UserSearchCarsPage select_Pick_UP_Location()
+	public UserSearchCarsPage select_Pick_UP_Location() throws InterruptedException
 	{
-		clickByXpath("//div[contains(text(),'Nile Egypt')]");
+		clickByXpath("//div[contains(text(),'Manchester')]");
+		Thread.sleep(3000);
 		return this;
 	}
 	
-	public UserSearchCarsPage click_Drop_Off_Location()
+	public UserSearchCarsPage click_Drop_Off_Location() throws InterruptedException
 	{
 		clickByLink("Drop off Location");
+		Thread.sleep(3000);
 		return this;
 	}
 	
@@ -84,7 +87,7 @@ public class UserSearchCarsPage extends PHP_Wrapper{
 	
 	public UserSearchCarsPage select_Drop_Off_Time()
 	{
-		selectIndextByName("dropoffTime", "07:00");
+		selectVisibleTextByName("dropoffTime", "07:00");
 		return this;
 	}
 	public UserSearchCarsPage click_Quick_Search()
@@ -205,11 +208,31 @@ public class UserSearchCarsPage extends PHP_Wrapper{
 		
 	}
 	
-	//Optional Search
+	
+	public UserSearchCarsPage enterPickUpDate(String data) throws InterruptedException
+	{
+		Thread.sleep(3000);
+		enterByName("pickupDate", data);
+		driver.findElement(By.name("pickupDate")).sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		return this;
+	}
+	
+	public UserSearchCarsPage enterdropOffDate(String data) throws InterruptedException
+	{
+		Thread.sleep(3000);
+		enterByName("dropoffDate", data);
+		Thread.sleep(3000);
+		return this;
+	}
 	
 	
+	public UserSearchCarsPage verifyTextNoResults()
+	{
+		verifyTextByXpath("//h1[contains(text(),'No Results!!')]", "No Results!!");
+		return this;
 	
-	
+	}
 	
 
 }

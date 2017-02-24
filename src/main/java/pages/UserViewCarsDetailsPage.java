@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.relevantcodes.extentreports.ExtentTest;
@@ -115,6 +116,75 @@ public class UserViewCarsDetailsPage extends PHP_Wrapper {
 		return new UserPersonalInfoConfirmationPage(driver,test);
 		
 	}
-
-
+	public UserViewCarsDetailsPage  editPickUPLocation(int index)
+	{
+		selectIndexByName("pickupLocation", index);
+		return this;
+	}
+	
+	public UserViewCarsDetailsPage editDropOffLocation(int index)
+	{
+		selectIndexByName("dropoffLocation", index);
+		return this;
+	}
+	public UserViewCarsDetailsPage editPickUpDate(String pickupdate)
+	{
+		enterByName("pickupDate", pickupdate);
+		return this;
+	}
+	
+	public UserViewCarsDetailsPage editDropOffDate(String dropoffdate)
+	{
+		enterByName("dropoffDate", dropoffdate);
+		return this;
+	}
+	public UserViewCarsDetailsPage geteditedTotalCost()
+	{
+		getTextByXpath("//div[@class='col-xs-12 well well-sm text-center']");
+		return this;
+	}
+	public UserPersonalInfoConfirmationPage clickeditedBookNow()
+	{
+		clickByXpath("//button[@class='btn btn-block btn-action btn-lg']");
+		return new UserPersonalInfoConfirmationPage(driver,test);
+	}
+	//Clicking the logged-in user
+	public UserViewCarsDetailsPage clickLoggedInUser()
+    {
+	clickByXpath("(//a[@class='dropdown-toggle'])[2]");
+	return this;
+    }
+	//Clicking the link "Account"
+	public UserAccountPage clickAccount()
+    {
+	clickByXpath("//a[contains(text(),'Account')]");
+	return new UserAccountPage(driver, test);
+    }
+	public UserViewCarsDetailsPage verifyTextAfterAddingCarToWhislist()
+	{
+		verifyTextByXpath("//span[@class='wishtext']", "Remove from wishlist");
+		return this;
+	}
+	public UserViewCarsDetailsPage verifyErrorForDate()
+	{
+		//verifyTextByXpath("//span[contains(text(),'Invalid Date Format')]","Invalid Date Format");
+		reportStep("Potential Failure - Invalid PickupDate","ERROR");
+		return this;
+	}
+	
+	public UserViewCarsDetailsPage enterPickUpDate(String data) throws InterruptedException
+	{
+		Thread.sleep(3000);
+		enterByName("pickupDate", data);
+		Thread.sleep(3000);
+		driver.findElement(By.name("pickupDate")).sendKeys(Keys.ENTER);
+		return this;
+	}
+	public UserViewCarsDetailsPage enterdropOffDate(String data) throws InterruptedException
+	{
+		Thread.sleep(3000);
+		enterByName("dropoffDate", data);
+		Thread.sleep(3000);
+		return this;
+	}
 }

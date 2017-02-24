@@ -91,6 +91,13 @@ public AdminAddCustomerPage emailNewsLetterSubscriber()
 	clickByXpath("//div[@class='icheckbox_square-grey']//ins");
 	return this;
 }
+public AdminAddCustomerPage clickInavlidSubmit() throws InterruptedException
+{
+	clickByXpath("//button[@class='btn btn-primary']");
+	Thread.sleep(6000);
+	getTextByXpath("//div[@class='alert alert-danger']//p");
+	return this;
+}
 public AdminCustomerManagementPage clickSubmit()
 {
 	clickByXpath("//button[@class='btn btn-primary']");

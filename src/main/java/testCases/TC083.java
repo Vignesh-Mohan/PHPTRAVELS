@@ -25,8 +25,10 @@ public class TC083 extends PHP_Wrapper {
 	}
 	
 	
-	@Test(dataProvider="fetchData",groups="editCustomer",dependsOnGroups="addCustomer")
-	public void runTC083(String customerLastName) throws Throwable 
+	@Test(dataProvider="fetchData",groups={"P1","editCustomer"},dependsOnGroups="addCustomer")
+	public void runTC083(String customerFirstName,String customerLastName,String customerMobile,
+			String customerPassword,String customerAdd1,
+			String customerAdd2,String customerCountry) throws Throwable 
 	{
 		new AdminLoginPage(driver, test)
 		.enterUsername("admin@phptravels.com")
@@ -34,15 +36,16 @@ public class TC083 extends PHP_Wrapper {
 		.clickLogin()
 		.clickAccounts()
 		.clickCustomers()
-		.clickedit(customerLastName)
-		.enterFirstName("C.T Vignesh")
-		.enterLastName("C.T Mohan")
-		.enterAddress1(" Bla bla street 1")
-		.enterAddress2("bla bla street 2")
-		.enterMobile("9000000009")
-		.enterEmailID("changedemail@yopmail.com")
+		.clickedit("John")
+		.enterFirstName(customerFirstName)
+		.enterLastName(customerLastName)
+		.enterMobile(customerMobile)
+		.enterEmailID(generateUniqueMailIDs())
+		.enterPassword(customerPassword)
+		.selectCountry("india")
+		.enterAddress1(customerAdd1)
+		.enterAddress2(customerAdd2)
 		.clickSubmit();
-		
 		
 	
 		

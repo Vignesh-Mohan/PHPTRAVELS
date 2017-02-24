@@ -21,11 +21,11 @@ public class TC022 extends PHP_Wrapper {
 		testDescription = "To verify whether the user is able to search for the available car using filter search";
 		category = "P1";
 		authors = "Vignesh Mohan";
-		dataSheetName = "";
+		//dataSheetName = "";
 	}
 	
 	
-	@Test
+	@Test(groups="P1")
 	public void runTC022() throws Throwable 
 	{
 			

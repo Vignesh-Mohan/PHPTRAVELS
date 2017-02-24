@@ -97,6 +97,83 @@ public class AdminCustomerEditPage extends PHP_Wrapper {
 		clickByXpath("//button[@class='btn btn-primary']");
 		return new AdminCustomerManagementPage(driver, test);
 	}
+	
+	public AdminCustomerEditPage checkWithoutFirstName(String fName,String lName,String pwd,
+			String mobileNo, String Country) throws InterruptedException
+	{
+		enterFirstName(fName);
+		enterLastName(lName);
+		//enterEmailID(email);
+		enterMobile(mobileNo);
+		enterPassword(pwd);
+		selectCountry(Country);
+		clickByXpath("//button[@class='btn btn-primary']");
+		if(getTextByXpath("//div[@class='alert alert-danger']/i[@class='fa fa-times-circle']/following-sibling::p")
+				.equals("The First Name field is required."))
+			System.out.println("First Name Mandatory--Warning message is correct");
+		else
+			System.out.println("First Name Mandatory--Warning message is in correct");
+		
+		return this;	
+	}
+	
+	
+	public AdminCustomerEditPage checkWithoutLastName(String fName,String lName,String pwd,
+			String mobileNo, String Country) throws InterruptedException
+	{
+		enterFirstName(fName);
+		enterLastName(lName);
+		//enterEmailID(email);
+		enterMobile(mobileNo);
+		enterPassword(pwd);
+		selectCountry(Country);
+		clickByXpath("//button[@class='btn btn-primary']");
+		if(getTextByXpath("//div[@class='alert alert-danger']/i[@class='fa fa-times-circle']/following-sibling::p")
+				.equals("The Last Name field is required."))
+			System.out.println("Last Name Mandatory--Warning message is correct");
+		else
+			System.out.println("First Name Mandatory--Warning message is in correct");
+		
+		return this;	
+	}
+	
+	public AdminCustomerEditPage checkWithoutEmailID(String fName,String lName,String email,String pwd,
+			String mobileNo, String Country) throws InterruptedException
+	{
+		enterFirstName(fName);
+		enterLastName(lName);
+		enterEmailID(email);
+		enterMobile(mobileNo);
+		enterPassword(pwd);
+		selectCountry(Country);
+		clickByXpath("//button[@class='btn btn-primary']");
+		if(getTextByXpath("//div[@class='alert alert-danger']/i[@class='fa fa-times-circle']/following-sibling::p")
+				.equals("The Email field is required."))
+			System.out.println("Email Id Mandatory--Warning message is correct");
+		else
+			System.out.println("Email Id Mandatory--Warning message is in correct");
+		
+		return this;	
+	}
+	
+	public AdminCustomerEditPage checkWithoutCountrySelection(String fName,String lName,String pwd,
+			String mobileNo, String Country) throws InterruptedException
+	{
+		enterFirstName(fName);
+		enterLastName(lName);
+		//enterEmailID(email);
+		enterMobile(mobileNo);
+		enterPassword(pwd);
+		selectCountry(Country);
+		clickByXpath("//button[@class='btn btn-primary']");
+		if(getTextByXpath("//div[@class='alert alert-danger']/i[@class='fa fa-times-circle']/following-sibling::p")
+				.equals("The Email field is required."))
+			System.out.println("Country Mandatory--Warning message is correct");
+		else
+			System.out.println("Country Mandatory--Warning message is in correct");
+		
+		return this;	
+	}
 }
 
 

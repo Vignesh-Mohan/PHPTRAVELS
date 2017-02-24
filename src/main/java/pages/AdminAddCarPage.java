@@ -34,11 +34,12 @@ public class AdminAddCarPage extends PHP_Wrapper{
 		return this;
 	}
 	
-	public AdminAddCarPage enter_CarDescription(String data)
+	public AdminAddCarPage enter_CarDescription(String data) throws InterruptedException
 	{
 		switchToFrame("(//iframe[@class='cke_wysiwyg_frame cke_reset'])[1]");
 		enterByXpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']", data);
 		switchToDefaultContent();
+		Thread.sleep(3000);
 		return this;
 	}
 	
@@ -118,12 +119,6 @@ public class AdminAddCarPage extends PHP_Wrapper{
 	}
 	
 	
-	public AdminAddCarPage click_SubmitCar()
-	{
-		clickById("add");
-		return this;
-	}
-	
 	public AdminAddCarPage click_PolicyTab()
 	{
 		clickByXpath("//ul[@class='nav nav-tabs nav-justified']//li[3]//a");
@@ -164,5 +159,18 @@ public class AdminAddCarPage extends PHP_Wrapper{
 		verifyTextInATable( data);
 		return this;
 	}
+	public AdminAddCarPage clickSubmitCarwithemptyCarName()
+	{
+		clickById("add");
+		verifyTextByXpath("//p[contains(text(),'The Car Name field is required.')]", "The Car Name field is required.");
+		return this;
+	}
+	public AdminCarsManagementPage click_SubmitCar() throws InterruptedException
+	{
+		clickById("add");
+		Thread.sleep(4000);
+		return new AdminCarsManagementPage(driver, test);
+	}
+	
 	
 }

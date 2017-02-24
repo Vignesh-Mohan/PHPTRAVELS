@@ -30,11 +30,11 @@ public class TC021 extends PHP_Wrapper {
 		testDescription = "To verify whether the user is able to search for the available car using quick search";
 		category = "P1";
 		authors = "Vignesh Mohan";
-		dataSheetName = "";
+		//dataSheetName = "";
 	}
 	
 	
-	@Test
+	@Test(groups="P1")
 	public void runTC021() throws Throwable 
 	{
 		DateFormat dateformat = new SimpleDateFormat("dd//MM//yyyy");
@@ -46,7 +46,7 @@ public class TC021 extends PHP_Wrapper {
 		int ipdate = Integer.parseInt(pdate);
 		
 		int ipickupdate = ipdate +2;
-		int ipickoffdate = ipdate +6;
+		int ipickoffdate = ipdate +3;
 		
 		System.out.println(ipickupdate);
 		System.out.println(ipickoffdate);
@@ -66,7 +66,7 @@ public class TC021 extends PHP_Wrapper {
 		.clickCars()
 		.click_Pick_UP_Location()
 		.select_Pick_UP_Location()
-		.click_Drop_Off_Location()
+	//	.click_Drop_Off_Location()
 		.click_Pick_Up_Date()
 		.select_Pick_Up_Date(pickupdate)
 		.select_Drop_Off_Time()

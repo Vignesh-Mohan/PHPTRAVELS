@@ -25,15 +25,15 @@ public class TC028 extends PHP_Wrapper {
 		testDescription = "To verify whether the user is able edit the all the fileds in book now page";
 		category = "P1";
 		authors = "Vignesh Mohan";
-		dataSheetName = "";
+		//dataSheetName = "";
 	}
 	
 	
-	@Test
+	@Test(groups="P1")
 	public void runTC028() throws Throwable 
 	{
 			
-		DateFormat dateformat = new SimpleDateFormat("dd//MM//yyyy");
+		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 		String currentdate = dateformat.format(date);
 		System.out.println(currentdate);
@@ -42,7 +42,8 @@ public class TC028 extends PHP_Wrapper {
 		int ipdate = Integer.parseInt(pdate);
 		
 		int ipickupdate = ipdate +2;
-		int ipickoffdate = ipdate +6;
+		int ipickoffdate = ipdate +3;
+		
 		
 		System.out.println(ipickupdate);
 		System.out.println(ipickoffdate);
@@ -50,6 +51,10 @@ public class TC028 extends PHP_Wrapper {
 		String pickupdate = String.valueOf(ipickupdate);
 		
 		String dropoffdate = String.valueOf(ipickoffdate);
+		
+		
+		
+	
 		
 		System.out.println("Inside test method");
 		new UserLandingPage(driver, test)
@@ -62,7 +67,7 @@ public class TC028 extends PHP_Wrapper {
 		.clickCars()
 		.click_Pick_UP_Location()
 		.select_Pick_UP_Location()
-		.click_Drop_Off_Location()
+		//.click_Drop_Off_Location()
 		.click_Pick_Up_Date()
 		.select_Pick_Up_Date(pickupdate)
 		.select_Drop_Off_Time()
@@ -70,14 +75,17 @@ public class TC028 extends PHP_Wrapper {
 		.select_Dop_Off_Date(dropoffdate)
 		.click_Quick_Search()
 		.viewACar()
-		.bookNow()
-		.bookingSummaryConfirmationPage()
-		.clickPayOnArrival();
+		.editPickUPLocation(1)
+		.editDropOffLocation(1)
+		.editPickUpDate("21/02/2017")
+		.editDropOffDate("22/02/2017")
+		.geteditedTotalCost()
+		.clickeditedBookNow()
+		.editedbookingSummaryConfirmationPage()
+		.clickPayOnArrival()
+		.checkReservedStatus();
 		
-		
-		
-	
-		
+			
 		
 	}
 

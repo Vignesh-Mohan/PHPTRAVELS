@@ -1,11 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
+<suite name="Suite" parallel="classes" thread-count="3">
   <test name="Test">
     <classes>
+     <!--  <class name="testCases.TC069"/>
+      <class name="testCases.TC103"/>
+      <class name="testCases.TC104"/>
+      <class name="testCases.TC101"/>
+      <class name="testCases.TC102"/>
+      <class name="testCases.TC107"/>
+      <class name="testCases.TC028"/>
+      <class name="testCases.TC108"/>
+      <class name="testCases.TC105"/>
+      <class name="testCases.TC106"/>
+      <class name="testCases.TC061"/>
+      <class name="testCases.TC063"/>
+      <class name="testCases.TC021"/>
+      <class name="testCases.TC064"/>
+      <class name="testCases.TC100"/>
+      <class name="testCases.TC067"/>
+      <class name="testCases.TC022"/>
+      <class name="testCases.TC070"/>
+      <class name="testCases.TC058"/>
+      <class name="testCases.TC057"/>
+      <class name="testCases.TC059"/>
+      <class name="testCases.TC094"/>
+      <class name="testCases.TC093"/>
+      <class name="testCases.TC096"/>
+      <class name="testCases.TC051"/>
+      <class name="testCases.TC095"/>
+      <class name="testCases.TC054"/>
+      <class name="testCases.TC098"/>
+      <class name="testCases.TC097"/>
+      <class name="testCases.TC056"/>
+      <class name="testCases.TC055"/>
+      <class name="testCases.TC099"/>
+      <class name="testCases.TC003"/>
+      <class name="testCases.TC005"/>
+      <class name="testCases.TC004"/>
+      <class name="testCases.TC007"/>
+      <class name="testCases.TC006"/>
+      <class name="testCases.TC009"/>
+      <class name="testCases.TC008"/>
       <class name="testCases.TC083"/>
+      <class name="testCases.TC041"/>
       <class name="testCases.TC085"/>
       <class name="testCases.TC084"/>
+      <class name="testCases.TC042"/>
+      <class name="testCases.TC001"/>
+      <class name="testCases.TC089"/>
+      <class name="testCases.TC088"/>
+      <class name="testCases.TC090"/>
+      <class name="testCases.TC092"/>
+      <class name="testCases.TC039"/>
+      <class name="testCases.TC072"/>
+      <class name="testCases.TC071"/>
+      <class name="testCases.TC030"/>
+      <class name="testCases.TC073"/>
+      <class name="testCases.TC032"/>
+      <class name="testCases.TC075"/>
+      <class name="testCases.TC034"/>
+      <class name="testCases.TC078"/>
+      <class name="testCases.TC033"/>
+      <class name="testCases.TC080"/> -->
+       <class name="testCases.TC003"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

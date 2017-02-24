@@ -41,14 +41,14 @@ public  AdminCustomerEditPage clickedit(String Customername)
                 	break;
                 }
                  
-          }           
+          }       
     }catch(StaleElementReferenceException e)
     {
           e.printStackTrace();
-          System.out.println("Stale element reference exception");
+         reportStep("Stale element reference exception","INFO");
     }
+	 return new AdminCustomerEditPage(driver, test);   
 
-return new AdminCustomerEditPage(driver, test);
 }
 public AdminCustomerManagementPage clickDelete(String Customername)
 {

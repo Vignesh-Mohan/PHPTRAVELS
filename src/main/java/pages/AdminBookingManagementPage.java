@@ -1,5 +1,10 @@
 package pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.relevantcodes.extentreports.ExtentTest;
@@ -31,11 +36,19 @@ public class AdminBookingManagementPage extends PHP_Wrapper
 		return this;
 	}
 	
-	public AdminBookingManagementPage editABooking()
+	public AdminBookingManagementPage verifyStatus()
+	{
+		clickByClassName("btn btn-xs btn-success");
+		return this;
+	}
+	
+	
+	
+	public AdminEditBookingPage editABooking()
 	{
 		
 		clickByXpath("//i[@class='fa fa-edit']");
-		return this;
+		return  new AdminEditBookingPage(driver, test);
 	}
 	
 	public AdminBookingManagementPage clickOnUploadBasedUponCarName(String carName)
@@ -78,5 +91,112 @@ public class AdminBookingManagementPage extends PHP_Wrapper
 		clickByXpath("//a[contains(.,'Go')]");
 		return this;
 	}
+	public AdminBookingManagementPage checkBgColorofStatus(String Val)
+	{
+	String bgcolour ="";
+	try {
+					
+					
+					List<WebElement> tables = driver.findElements(By.tagName("table"));
+		             for(WebElement table : tables)
+		           {
+		                       
+
+					List<WebElement> rows = table.findElements(By.tagName("tr"));
+					for(int i = 0;i<rows.size();i++)
+					{
+					       List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
+					       for(int j = 0;j<cols.size();j++)
+					       {
+					             if(cols.get(j).getText().equalsIgnoreCase(Val))
+					             {
+					                    System.out.println("Match found");
+					                    
+					               bgcolour =   cols.get(j+7).findElement(By.tagName("span")).getCssValue("backgroundcolour");
+	                               String str=bgcolour;
+			
+			                       String partialRGB = str.substring(str.indexOf("(") + 1, str.indexOf(")"));;
+			                       partialRGB=partialRGB.replace(",", "");
+			                       partialRGB=partialRGB.replace(",", "");
+			int RBG_Number=Integer.valueOf(partialRGB);
+	switch(RBG_Number)
+	{
+	case 251180801: 
+					System.out.println("The background color is Orange  and the car  Status is RESERVED");
+					reportStep("The background color is Orange and the car is reserved", "PASS");
+					break;
+
+	case 98196981: 
+					System.out.println("The background color is Orange  and the car Status is PAID");
+					reportStep("The background color is Green and the car Status is PAID", "PASS");
+					break;
+	case 911922221: 
+					System.out.println("The background color is Orange  and the car Status is UNPAID");
+					reportStep("The background color is Blue and the car Status is UNPAID", "PASS");
+					break;
+	case 23895911: 
+					System.out.println("The background color is Orange  and the car Status is CANCELLED");
+					reportStep("The background color is Red and the car Status is CANCELLED", "PASS");
+					break;
+
+	default:			System.out.println(" The Background color does not match");
+					reportStep(" The background color does not match with any criteria","FAIL");
+					break;
+	}
+
+					                  
+					                    break;
+					             }
+					       }
+					}
+					reportStep("","PASS");
+				}
+				}
+	                                
+	                catch(StaleElementReferenceException e)
+	                {
+	                      e.printStackTrace();
+	                      System.out.println("Stale element reference exception");
+	                }
+	return this;
+	}
+	public AdminBookingManagementPage deleteBooking(String val)
+	{
+		try{
+	        List<WebElement> tables = driver.findElements(By.tagName("table"));
+	        
+	        for(WebElement table : tables)
+	        {
+	              List<WebElement> rows = table.findElements(By.tagName("tr"));
+	              
+	              for(int i = 0;i<rows.size();i++)
+	              {
+	            	 
+	                     List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
+	                     
+	                     for(int j = 0;j<columns.size();j++)
+	                     {
+	                    	 String noResult =columns.get(j).getText();
+	                            if(noResult.equals(val))
+	                            {                       
+	                            	driver.findElementByXPath("(//a[@class='btn btn-default btn-xcrud btn-danger'])[1]/i").click();
+	                            	acceptAlert();
+	                            	break;
+	                            }
+	                            
+	                     }
+	        
+	              }
+	        }
+	        }catch(StaleElementReferenceException e)
+	        {
+	              e.printStackTrace();
+	              System.out.println("Stale element reference exception");
+	        }
+	 
+	 return this;
+	}
+	
+	
 	
 }

@@ -28,7 +28,16 @@ public class UserLoginPage extends PHP_Wrapper {
 	public UserAccountPage clickLogin() throws InterruptedException
 	{
 		clickByXpath("//button[@type='submit']");
-		Thread.sleep(6000);
+		Thread.sleep(2000);
 		return new UserAccountPage(driver, test);
 	}
+	public UserLoginPage invalidLogin() throws InterruptedException
+	{
+		clickByXpath("//button[@type='submit']");
+		Thread.sleep(6000);
+		verifyTextContainsByXpath("//div[contains(text(),'Invalid Email or Password')]", "Invalid Email or Password");
+		return this;
+	}
+	
+	
 }

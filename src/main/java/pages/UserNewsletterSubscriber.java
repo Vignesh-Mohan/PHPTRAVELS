@@ -31,14 +31,7 @@ public class UserNewsletterSubscriber extends PHP_Wrapper
 		}
 		
 		
-		public UserNewsletterSubscriber addNewsLetterSubscriber(String data)
-		{
-			enterById("exampleInputEmail1", data);
-			actionClickElementUsingXpath("(//button[@type='submit'])[4]");
-		
-			return this;
-		}
-		
+	
 	}
 		
 		

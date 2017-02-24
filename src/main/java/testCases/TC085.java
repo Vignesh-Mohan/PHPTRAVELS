@@ -6,6 +6,7 @@ import pages.AdminLoginPage;
 
 import org.testng.annotations.BeforeClass;
 
+
 import wrappers.PHP_Wrapper;
 
 
@@ -25,11 +26,13 @@ public class TC085 extends PHP_Wrapper {
 	}
 	
 	
-	@Test(dataProvider="fetchData",groups="addCustomer")
+	@Test(dataProvider="fetchData",groups={"P1","addCustomer"})
 	public void runTC085(String customerFirstName,String customerLastName,String customerMobile,
-							String customerEmail,String customerPassword,String customerAdd1,
+							String customerPassword,String customerAdd1,
 							String customerAdd2,String customerCountry) throws Throwable 
 	{
+		
+		
 		new AdminLoginPage(driver, test)
 		.enterUsername("admin@phptravels.com")
 		.enterPassowrd("demoadmin")
@@ -40,7 +43,7 @@ public class TC085 extends PHP_Wrapper {
 		.enterFirstName(customerFirstName)
 		.enterLastName(customerLastName)
 		.enterMobile(customerMobile)
-		.enterEmailID(customerEmail)
+		.enterEmailID(generateUniqueMailIDs())
 		.enterPassword(customerPassword)
 		.enterAddress1(customerAdd1)
 		.enterAddress2(customerAdd2)

@@ -24,8 +24,10 @@ public class AddAdminPage extends PHP_Wrapper {
 public AddAdminPage enterFirstName(String data)
 {
 	enterByName("fname",data);
+	
 	return this;	
 }
+
 public AddAdminPage enterLastName(String data)
 {
 	enterByName("lname",data);
@@ -197,6 +199,18 @@ public AdminsManagementPage  clickSubmit()
 {
 	clickByXpath("//button[@class='btn btn-primary']");
 	return new AdminsManagementPage(driver, test);
+}
+
+public AddAdminPage  addInvalidAdmin()
+{
+	clickByXpath("//button[@class='btn btn-primary']");
+	
+	verifyTextByXpath("//div[@class='alert alert-danger']//p[1]", "The Email field is required.");
+	verifyTextByXpath("//div[@class='alert alert-danger']//p[2]", "The Password field is required.");
+	verifyTextByXpath("//div[@class='alert alert-danger']//p[3]", "The Country field is required.");
+	verifyTextByXpath("//div[@class='alert alert-danger']//p[4]", "The First Name field is required.");
+	verifyTextByXpath("//div[@class='alert alert-danger']//p[5]", "The Last Name field is required.");
+	return this;
 }
 }
 

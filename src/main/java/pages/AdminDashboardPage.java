@@ -74,9 +74,5 @@ public AdminDashboardPage clickOnCarsMenu()
 		return new AdminCarsManagementPage(driver,test);
 	}
 	
-	public AdminDashboardPage click_Accounts()
-	{
-		clickById("Accounts");
-		return this;
-	}
+	
 }

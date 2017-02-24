@@ -74,5 +74,10 @@ public class AdminEditACarPage extends PHP_Wrapper
 		System.out.println("A car deleted successfully....");
 		return this;
 	}
+	public AdminEditACarPage enterCarName(String data)
+	{
+		enterByName("carname", data);
+		return this;
+	}
 	
 }

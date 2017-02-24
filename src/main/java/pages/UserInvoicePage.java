@@ -26,16 +26,23 @@ public class UserInvoicePage extends PHP_Wrapper
 	
 	public UserInvoicePage checkReservedStatus()
 	{
-		InvoiceNumber=getTextByXpath("//strong[contains(.,'Booking Code')]");
-		System.out.println("Invoice Number:" +InvoiceNumber);
+		InvoiceNumber=getTextByXpath("//div[@class='col-md-6']//div[3]");
+		InvoiceNumber=InvoiceNumber.substring(InvoiceNumber.indexOf("Code ")+5,InvoiceNumber.length());
+		System.out.println("Invoice No. is:"+InvoiceNumber);
 		Boolean StatusCheck=driver.findElement(By.xpath("//b[contains(.,'Reserved')]")).isDisplayed();
 		
 		if(StatusCheck==true)
+		{
 			System.out.println("Pay on Arrival is confirmed");
+		}
 		else
 			System.out.println("Reservation might be on the status of Cancelled/Unpaid");
 		
+	//	checkAllDetails();
+		
 		return this;
 	}
+	
+	
 	
 }

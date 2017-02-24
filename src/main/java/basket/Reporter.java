@@ -33,6 +33,8 @@ public abstract class Reporter {
 			test.log(LogStatus.INFO, desc);
 		}else if(status.toUpperCase().equals("WARN")){
 			test.log(LogStatus.WARNING, desc+test.addScreenCapture("./../reports/images/"+snapNumber+".jpg"));
+		}else if(status.toUpperCase().equals("ERROR")){
+			test.log(LogStatus.ERROR, desc+test.addScreenCapture("./../reports/images/"+snapNumber+".jpg"));
 		}
 	}
 

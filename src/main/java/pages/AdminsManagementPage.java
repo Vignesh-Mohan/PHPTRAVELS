@@ -36,7 +36,7 @@ public AdminEditPage clickedit(String adminname)
          
           for(int i = 1;i<rows.size();i++)                      	  
           {
-                WebElement text = driver.findElement(By.xpath("//table[@class='xcrud-list table table-striped table-hover']/tbody/tr["+i+"]/td[4]"));
+                WebElement text = driver.findElement(By.xpath("//table[@class='xcrud-list table table-striped table-hover']/tbody/tr["+i+"]/td[3]"));
                 if(text.getText().equalsIgnoreCase(adminname))
                 {
                 	driver.findElementByXPath("(//a[@class='btn btn-default btn-xcrud btn btn-warning'])["+i+"]/i").click();
@@ -60,10 +60,11 @@ public AdminsManagementPage clickDelete(String adminname)
              
               for(int i = 1;i<rows.size();i++)                      	  
               {
-                    WebElement text = driver.findElement(By.xpath("//table[@class='xcrud-list table table-striped table-hover']/tbody/tr["+i+"]/td[4]"));
+                    WebElement text = driver.findElement(By.xpath("//table[@class='xcrud-list table table-striped table-hover']/tbody/tr["+i+"]/td[3]"));
                     if(text.getText().equalsIgnoreCase(adminname))
                     {
                     	driver.findElementByXPath("(//a[@class='btn btn-default btn-xcrud btn-danger'])["+i+"]/i").click();
+                    	driver.switchTo().alert().accept();
                     	break;
                     }
                      
@@ -75,9 +76,10 @@ public AdminsManagementPage clickDelete(String adminname)
         }
  return this;
 }
-public AdminsManagementPage okAlert()
+public AdminsManagementPage okAlert() throws InterruptedException
 {
 	acceptAlert();
+	Thread.sleep(2000);
 	return this;
 }
 public AdminsManagementPage cancelAlerts()
@@ -109,48 +111,44 @@ public AdminsManagementPage clickGo() throws InterruptedException
 {
 	
 	clickByXpath("//a[@class='xcrud-action btn btn-primary']");
-	Thread.sleep(2000);
+	Thread.sleep(3000);
 	return this;
 }
 public AdminsManagementPage verifyAdmin(String Val)
 {
 	try{
-		
-		   WebElement table = driver.findElement(By.xpath("//table[@class='xcrud-list table table-striped table-hover']"));
-	       List<WebElement> rows = table.findElements(By.tagName("tr"));        
-	       WebElement notext = driver.findElement(By.xpath("//table[@class='xcrud-list table table-striped table-hover']/tbody/tr/td"));
-	 	   String noResult = notext.getText();
-	 	   if(noResult.equals("Entries not found."))
-	 	   {
-	 		  System.out.println(noResult);
-	 	   }
-	 	   else if(driver.findElement(By.xpath("//table[@class='xcrud-list table table-striped table-hover']/tbody/tr[1]/td[4]")).isDisplayed()){
-	 		   
-	 		   for(int i = 1;i<rows.size();i++)                      	  
-	 	   
-	          {
-	               WebElement text = driver.findElement(By.xpath("//table[@class='xcrud-list table table-striped table-hover']/tbody/tr["+i+"]/td[3]"));
-	               String test = text.getText();
-	               
-
-	                if(test.equalsIgnoreCase(Val))
-	                {
-	                	
-	                	System.out.println("The searched admin name" +Val+ "is found");
-	                }
-	          }
-	                	               	
-	          }
-			
-			
-	                
-	    }catch(StaleElementReferenceException e)
-	    {
-	          e.printStackTrace();
-	          System.out.println("Stale element reference exception");
-	    }
-
-	return this;
+        List<WebElement> tables = driver.findElements(By.tagName("table"));
+        
+        for(WebElement table : tables)
+        {
+              List<WebElement> rows = table.findElements(By.tagName("tr"));
+              
+              for(int i = 0;i<rows.size();i++)
+              {
+                     List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
+                     
+                     for(int j = 0;j<columns.size();j++)
+                     {
+                    	 String noResult =columns.get(j).getText();
+                            if(noResult.equals(Val))
+                            {                       
+                            	System.out.println("The searched" +Val+ "is found");                          		 
+                            }
+                            else if(noResult.equals(("Entries not found.")))
+                            {
+                            	System.out.println(noResult);
+                            }
+                     }
+        
+              }
+        }
+        }catch(StaleElementReferenceException e)
+        {
+              e.printStackTrace();
+              System.out.println("Stale element reference exception");
+        }
+ 
+ return this;
 }
 
 }
