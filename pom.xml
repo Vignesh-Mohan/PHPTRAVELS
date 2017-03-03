@@ -55,6 +55,8 @@
     <version>1.1.1</version>
 	</dependency>
 	
+<!-- https://mvnrepository.com/artifact/org.nuxeo.theme/nuxeo-theme-core -->
+
 	
 		
 	</dependencies>

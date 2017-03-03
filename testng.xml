@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="classes" thread-count="3">
+<suite name="Suite" parallel="classes" thread-count="2">
   <test name="Test">
     <classes>
-     <!--  <class name="testCases.TC069"/>
+      <class name="testCases.TC069"/>
       <class name="testCases.TC103"/>
       <class name="testCases.TC104"/>
       <class name="testCases.TC101"/>
@@ -62,8 +62,8 @@
       <class name="testCases.TC034"/>
       <class name="testCases.TC078"/>
       <class name="testCases.TC033"/>
-      <class name="testCases.TC080"/> -->
-       <class name="testCases.TC003"/>
+      <class name="testCases.TC080"/>
+  
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

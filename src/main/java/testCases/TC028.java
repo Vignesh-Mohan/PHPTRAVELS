@@ -41,8 +41,17 @@ public class TC028 extends PHP_Wrapper {
 		System.out.println(pdate);
 		int ipdate = Integer.parseInt(pdate);
 		
-		int ipickupdate = ipdate +2;
-		int ipickoffdate = ipdate +3;
+		int ipickupdate ;
+		int ipickoffdate;
+	if(ipdate>=28)
+	{
+		 ipickupdate = ipdate;
+		 ipickoffdate = ipdate;
+	}else{
+	
+	 ipickupdate = ipdate +2;
+	 ipickoffdate = ipdate +3;
+	}
 		
 		
 		System.out.println(ipickupdate);

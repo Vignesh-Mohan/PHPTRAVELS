@@ -1,0 +1,5 @@
+,View Console = http://192.168.15.85:6666/grid/console#
+
+Launch hub = java -jar selenium-server-standalone-3.0.1.jar -role hub
+
+Launch Node = java -jar selenium-server-standalone-3.0.1.jar -role wd -port 5675 -hub http://192.168.15.116:4444 -browser "browserName=chrome,PLATFORM='WINDOWS',maxInstances=1"

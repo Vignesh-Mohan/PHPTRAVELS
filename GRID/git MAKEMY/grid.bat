@@ -1,0 +1,1 @@
+java -jar selenium-server-standalone-3.0.1.jar -role wd -port 8881 -hub http://192.168.15.159:4444 -browser "browserName=chrome, PLATFORM='WINDOWS',maxInstances=1"

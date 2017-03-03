@@ -35,9 +35,17 @@ public void login(String username,String password) throws InterruptedException
 	String pdate =currentdate.substring(0, 2);
 	System.out.println(pdate);
 	int ipdate = Integer.parseInt(pdate);
-	
-	int ipickupdate = ipdate +2;
-	int ipickoffdate = ipdate +3;
+	int ipickupdate ;
+	int ipickoffdate;
+	if(ipdate>=28)
+	{
+	 ipickupdate = ipdate;
+	 ipickoffdate = ipdate;
+	}else{
+
+ ipickupdate = ipdate +2;
+ ipickoffdate = ipdate +3;
+}
 	
 	System.out.println(ipickupdate);
 	System.out.println(ipickoffdate);

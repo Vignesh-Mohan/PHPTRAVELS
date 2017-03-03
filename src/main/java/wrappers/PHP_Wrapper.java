@@ -52,7 +52,8 @@ public class PHP_Wrapper extends GenericWrappers {
 	public static int index, number;
 	private ScreenRecorder screenRecorder;
 	Random ran = new Random();
-	int randomNumber = ran.nextInt(20) + 1;
+	int ranNum = ran.nextInt(100000000) + 1;
+	String randomNumber ="PT0"+ranNum;
 	
 	DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
 	Date date = new Date();
@@ -79,8 +80,8 @@ public class PHP_Wrapper extends GenericWrappers {
 	@AfterSuite
 	public void afterSuite() throws Exception{
 		stopRecording();
-		reportSending();
 		endResult();
+		reportSending();
 	}
 
 	
@@ -142,8 +143,8 @@ public class PHP_Wrapper extends GenericWrappers {
 	
 	public void reportSending ()
 	{
-		 final String EmailUser = "vigneshmohan718@gmail.com";
-		    final String EmailPassword = "vendantamil";
+		 final String EmailUser = "userName";
+		    final String EmailPassword = "Password";
 
 		    Properties props =  new Properties();
 			props.put("mail.smtp.host", "smtp.gmail.com");
@@ -163,15 +164,15 @@ public class PHP_Wrapper extends GenericWrappers {
 				   });
 
 		// Recipient Email ID
-		String to =    "Vignesh.Mohan@gsr-inc.com";
+		String to =    "Recipient Email ID";
 		           //"Satheeshkanth.Paramasivam@gsr-inc.com";
 		
 		// Recipient CC Email ID
-				String CC = "Vignesh.Mohan@gsr-inc.com";
+				String CC = "Recipient CC Email ID";
 				
 		
 		// Sender Email ID
-		String from = "vigneshmohan718@gmail.com";
+		String from = "Email Id";
 		
 		//Sending Email from local host
 		
@@ -191,13 +192,13 @@ public class PHP_Wrapper extends GenericWrappers {
 			// Set To: Message field of the header
 						message.addRecipient(Message.RecipientType.CC, new InternetAddress(CC));
 			// Set Subject: header field
-			message.setSubject("PHP Travels  Report for Test Run #"+randomNumber+", dated on "+currentdate);
+			message.setSubject("PHP Travels  Report for Test Run "+randomNumber+", dated - "+currentdate);
 			
 			 // Create the message part 
 	         BodyPart messageBodyPart = new MimeBodyPart();
 
 	         // Fill the message
-	         messageBodyPart.setText("Hi Satheesh," +"\n\n"+ "Please find the attached report of PHP Travels for Test Run #"+randomNumber+", dated on "+currentdate+"." +"\n\n\n\n"+"Thanks!");
+	         messageBodyPart.setText("Hi ," +"\n\n"+ "Please find the attached report of PHP Travels for Test Run "+randomNumber+"." +"\n\n\n\n"+"Thanks!");
 
 	         // Create a multipar message
 	         Multipart multipart = new MimeMultipart();
@@ -226,7 +227,7 @@ public class PHP_Wrapper extends GenericWrappers {
 	     	System.out.println("Message sent successfully....");
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

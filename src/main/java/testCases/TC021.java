@@ -37,6 +37,7 @@ public class TC021 extends PHP_Wrapper {
 	@Test(groups="P1")
 	public void runTC021() throws Throwable 
 	{
+	
 		DateFormat dateformat = new SimpleDateFormat("dd//MM//yyyy");
 		Date date = new Date();
 		String currentdate = dateformat.format(date);
@@ -44,10 +45,17 @@ public class TC021 extends PHP_Wrapper {
 		String pdate =currentdate.substring(0, 2);
 		System.out.println(pdate);
 		int ipdate = Integer.parseInt(pdate);
+			int ipickupdate ;
+			int ipickoffdate;
+		if(ipdate>=28)
+		{
+			 ipickupdate = ipdate;
+			 ipickoffdate = ipdate;
+		}else{
 		
-		int ipickupdate = ipdate +2;
-		int ipickoffdate = ipdate +3;
-		
+		 ipickupdate = ipdate +2;
+		 ipickoffdate = ipdate +3;
+		}
 		System.out.println(ipickupdate);
 		System.out.println(ipickoffdate);
 		
